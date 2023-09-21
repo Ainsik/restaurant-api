@@ -14,6 +14,11 @@ public class MappingProfile : Profile
             .ForMember(r => r.Street, x => x.MapFrom(d => d.Address.Street))
             .ForMember(r => r.PostalCode, x => x.MapFrom(d => d.Address.PostalCode));
 
+        CreateMap<NewRestaurantDto, Restaurant>()
+            .ForMember(r => r.Address,
+                x => x.MapFrom(d => new Address
+                    {City = d.City, Street = d.Street, PostalCode = d.PostalCode}));
+
         CreateMap<Dish, DishDto>();
     }
 }
