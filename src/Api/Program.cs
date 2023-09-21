@@ -1,5 +1,6 @@
 using Infrastructure.DbContext;
 using Microsoft.EntityFrameworkCore;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,5 +39,18 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetService<RestaurantDbContext>();
+var pendingMigrations = dbContext.Database.GetPendingMigrations();
+
+var policy = Policy
+    .Handle<Exception>()
+    .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
+
+policy.Execute(() =>
+{
+    if (pendingMigrations.Any()) dbContext.Database.Migrate();
+});
 
 app.Run();
