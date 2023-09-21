@@ -1,9 +1,16 @@
+using Infrastructure.DbContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<RestaurantDbContext>(
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnectionString"))
+);
 
 var app = builder.Build();
 
