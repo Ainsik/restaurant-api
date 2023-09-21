@@ -1,3 +1,4 @@
+using Application.Profiles;
 using Infrastructure.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Polly;
@@ -12,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RestaurantDbContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnectionString"))
 );
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddCors(options =>
 {
