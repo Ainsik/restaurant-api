@@ -1,5 +1,9 @@
+using Application.Contracts.Application;
+using Application.Contracts.Infrastructure;
 using Application.Profiles;
+using Application.Services;
 using Infrastructure.DbContext;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Polly;
 
@@ -13,6 +17,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RestaurantDbContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnectionString"))
 );
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
