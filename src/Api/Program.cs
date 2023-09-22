@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<RestaurantDbContext>(
-    option => option.UseSqlServer(builder.Configuration.GetConnectionString("ContactListConnectionString"))
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnectionString"))
 );
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
