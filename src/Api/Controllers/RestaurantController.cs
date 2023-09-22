@@ -40,4 +40,11 @@ public class RestaurantController : ControllerBase
 
         return Ok();
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
+    {
+        await _restaurantService.DeleteAsync(id);
+        return NoContent();
+    }
 }

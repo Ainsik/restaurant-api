@@ -54,6 +54,12 @@ public class RestaurantService : IRestaurantService
 
     public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var restaurant = await _unitOfWork.RestaurantRepository
+            .GetAsync(id);
+
+        if (restaurant is null) throw new NotFoundApiException("Wrong id.");
+
+        _unitOfWork.RestaurantRepository.Remove(restaurant);
+        await _unitOfWork.SaveAsync();
     }
 }
