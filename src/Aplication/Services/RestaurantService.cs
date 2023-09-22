@@ -3,6 +3,7 @@ using Application.Contracts.Infrastructure;
 using Application.Dto.Restaurant;
 using Application.Exceptions;
 using AutoMapper;
+using Core.Entities;
 
 namespace Application.Services;
 public class RestaurantService : IRestaurantService
@@ -38,9 +39,12 @@ public class RestaurantService : IRestaurantService
         return restaurantDto;
     }
 
-    public async Task<(int, NewRestaurantDto)> CreateAsync(NewRestaurantDto dto)
+    public async Task CreateAsync(NewRestaurantDto dto)
     {
-        throw new NotImplementedException();
+        var restaurant = _mapper.Map<Restaurant>(dto);
+        
+        await _unitOfWork.RestaurantRepository.AddAsync(restaurant);
+        await _unitOfWork.SaveAsync();
     }
 
     public async Task UpdateAsync(int id, UpdateRestaurantDto dto)

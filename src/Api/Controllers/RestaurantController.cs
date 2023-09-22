@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Application;
 using Application.Dto.Restaurant;
+using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -35,12 +36,8 @@ public class RestaurantController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateRestaurantAsync([FromBody] NewRestaurantDto dto)
     {
-        //var restaurant = _mapper.Map<Restaurant>(dto);
-        //_dbContext.Restaurants.Add(restaurant);
-        //_dbContext.SaveChanges();
+        await _restaurantService.CreateAsync(dto);
 
-        //return Created($"/api/restaurant/{restaurant.Id}", restaurant);
-
-        throw new NotImplementedException();
+        return Ok();
     }
 }
