@@ -19,6 +19,8 @@ public class MappingProfile : Profile
                 x => x.MapFrom(d => new Address
                     {City = d.City, Street = d.Street, PostalCode = d.PostalCode}));
 
+        CreateMap<UpdateRestaurantDto, Restaurant>();
+
         CreateMap<Dish, DishDto>();
     }
 }
