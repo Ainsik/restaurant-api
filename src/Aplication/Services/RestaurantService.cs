@@ -49,17 +49,22 @@ public class RestaurantService : IRestaurantService
 
     public async Task UpdateAsync(int id, UpdateRestaurantDto dto)
     {
-        throw new NotImplementedException();
+        var updateRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
+
+        if (updateRestaurant is null) throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
+
+        _mapper.Map(dto, updateRestaurant);
+        _unitOfWork.RestaurantRepository.Modify(updateRestaurant);
+        await _unitOfWork.SaveAsync();
     }
 
     public async Task DeleteAsync(int id)
     {
-        var restaurant = await _unitOfWork.RestaurantRepository
-            .GetAsync(id);
+        var deleteRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
 
-        if (restaurant is null) throw new NotFoundApiException("Wrong id.");
+        if (deleteRestaurant is null) throw new NotFoundApiException("Wrong id.");
 
-        _unitOfWork.RestaurantRepository.Remove(restaurant);
+        _unitOfWork.RestaurantRepository.Remove(deleteRestaurant);
         await _unitOfWork.SaveAsync();
     }
 }

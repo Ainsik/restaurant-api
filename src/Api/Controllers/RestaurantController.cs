@@ -41,6 +41,13 @@ public class RestaurantController : ControllerBase
         return Ok();
     }
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateContact([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
+    {
+        await _restaurantService.UpdateAsync(id, dto);
+        return NoContent();
+    }
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
     {
