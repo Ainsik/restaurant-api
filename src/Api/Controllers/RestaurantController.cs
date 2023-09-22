@@ -27,22 +27,9 @@ public class RestaurantController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<RestaurantDto>> GetRestaurantAsync([FromRoute] int id)
     {
-        //var restaurant = _dbContext
-        //    .Restaurants
-        //    .Include(r => r.Address)
-        //    .Include(r => r.Dishes)
-        //    .FirstOrDefault(r => r.Id == id);
+        var restaurant = await _restaurantService.GetByIdAsync(id);
 
-        //if (restaurant is null)
-        //{
-        //    return NotFound();
-        //}
-
-        //var restaurantDto = _mapper.Map<RestaurantDto>(restaurant);
-
-        //return Ok(restaurantDto);
-
-        throw new NotImplementedException();
+        return Ok(restaurant);
     }
 
     [HttpPost]

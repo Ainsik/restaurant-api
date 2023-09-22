@@ -1,6 +1,7 @@
 ﻿using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Dto.Restaurant;
+using Application.Exceptions;
 using AutoMapper;
 
 namespace Application.Services;
@@ -27,7 +28,14 @@ public class RestaurantService : IRestaurantService
 
     public async Task<RestaurantDto> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var restaurant = await _unitOfWork.RestaurantRepository
+            .GetAsync(d => d.Id == id, includeProperties: "Address, Dishes");
+
+        if (restaurant is null) throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
+
+        var restaurantDto = _mapper.Map<RestaurantDto>(restaurant);
+
+        return restaurantDto;
     }
 
     public async Task<(int, NewRestaurantDto)> CreateAsync(NewRestaurantDto dto)
