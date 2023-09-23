@@ -6,6 +6,17 @@ public class AddressConfiguration : IEntityTypeConfiguration<Core.Entities.Addre
 {
     public void Configure(EntityTypeBuilder<Core.Entities.Address> builder)
     {
-        throw new NotImplementedException();
+        builder.Property(a => a.City)
+            .IsRequired()
+            .HasMaxLength(50);
+
+        builder.Property(a => a.Street)
+            .IsRequired()
+            .HasMaxLength(50);
+
+        builder.Property(a => a.PostalCode)
+            .IsRequired()
+            .HasMaxLength(6)
+            .IsFixedLength();
     }
 }
