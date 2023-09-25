@@ -8,6 +8,7 @@ using Application.Services;
 using FluentValidation;
 using Infrastructure.DbContext;
 using Infrastructure.Repositories;
+using Infrastructure.Seeder;
 using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
@@ -24,6 +25,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RestaurantDbContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnectionString"))
 );
+
+builder.Services.AddScoped<RestaurantSeeder>();
 
 builder.Services.AddScoped<IValidator<NewAddressDto>, NewAddressDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateAddressDto>, UpdateAddressDtoValidator>();
@@ -73,6 +76,9 @@ var pendingMigrations = dbContext.Database.GetPendingMigrations();
 var policy = Policy
     .Handle<Exception>()
     .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
+
+var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
+seeder.Seed();
 
 policy.Execute(() =>
 {
