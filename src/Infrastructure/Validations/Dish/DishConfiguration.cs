@@ -15,6 +15,7 @@ public class DishConfiguration : IEntityTypeConfiguration<Core.Entities.Dish>
             .HasMaxLength(200);
 
         builder.Property(d => d.Price)
-            .IsRequired();
+            .IsRequired()
+            .HasPrecision(6, 2);
     }
 }

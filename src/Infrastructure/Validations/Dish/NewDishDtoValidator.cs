@@ -15,6 +15,7 @@ public class NewDishDtoValidator : AbstractValidator<NewDishDto>
             .MaximumLength(200).WithMessage("Dish description can't be longer than 200 characters.");
 
         RuleFor(d => d.Price)
-            .NotEmpty().WithMessage("Dish price is required.");
+            .NotEmpty().WithMessage("Dish price is required.")
+            .PrecisionScale(6,2, true);
     }
 }
