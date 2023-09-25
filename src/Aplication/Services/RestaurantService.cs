@@ -20,7 +20,7 @@ public class RestaurantService : IRestaurantService
     public async Task<IEnumerable<RestaurantDto>> GetAllAsync()
     {
         var restaurants = await _unitOfWork.RestaurantRepository
-            .GetAllAsync(includeProperties: "Address, Dishes");
+            .GetAllAsync(includeProperties: "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
@@ -30,7 +30,7 @@ public class RestaurantService : IRestaurantService
     public async Task<RestaurantDto> GetByIdAsync(int id)
     {
         var restaurant = await _unitOfWork.RestaurantRepository
-            .GetAsync(d => d.Id == id, includeProperties: "Address, Dishes");
+            .GetAsync(d => d.Id == id, includeProperties: "Address,Dishes");
 
         if (restaurant is null) throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
 
