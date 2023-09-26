@@ -6,6 +6,11 @@ public class AddressConfiguration : IEntityTypeConfiguration<Core.Entities.Addre
 {
     public void Configure(EntityTypeBuilder<Core.Entities.Address> builder)
     {
+        builder.HasOne(a => a.Restaurant)
+            .WithOne(r => r.Address)
+            .HasForeignKey<Core.Entities.Address>(r => r.RestaurantId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(a => a.City)
             .IsRequired()
             .HasMaxLength(50);
