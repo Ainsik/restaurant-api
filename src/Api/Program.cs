@@ -6,6 +6,7 @@ using Application.Dto.Restaurant;
 using Application.Profiles;
 using Application.Services;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infrastructure.DbContext;
 using Infrastructure.Repositories;
 using Infrastructure.Seeder;
@@ -27,6 +28,8 @@ builder.Services.AddDbContext<RestaurantDbContext>(
 );
 
 builder.Services.AddScoped<RestaurantSeeder>();
+
+builder.Services.AddFluentValidation();
 
 builder.Services.AddScoped<IValidator<NewAddressDto>, NewAddressDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateAddressDto>, UpdateAddressDtoValidator>();
