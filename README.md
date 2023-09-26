@@ -1,3 +1,20 @@
+# To Do
+
+## Backedn
+- przetestowanie aktualnych endpointow
+- relacje między tabelami
+- seeder
+- middleware
+- panel admina
+- autoryzacja i autentykacja
+
+## Frontend
+- 
+-
+-
+
+
+---
 # Restaurant API with C# and Vue.js
 
 This is a simple restaurant management application that consists of a back-end API built with C# and a front-end user interface developed using Vue.js with Bootstrap for styling. This application allows restaurant owners to manage their menu items and orders.
