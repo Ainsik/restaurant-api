@@ -3,6 +3,7 @@
 ## Backedn
 - przetestowanie aktualnych endpointow
 - relacje między tabelami
+- seeder
 - middleware
 - panel admina
 - autoryzacja i autentykacja
