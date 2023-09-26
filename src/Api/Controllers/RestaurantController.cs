@@ -1,6 +1,5 @@
 ﻿using Application.Contracts.Application;
 using Application.Dto.Restaurant;
-using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
