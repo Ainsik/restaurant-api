@@ -1,8 +1,6 @@
 # To Do
 
 ## Backedn
-- przetestowanie aktualnych endpointow
-- relacje między tabelami
 - seeder
 - middleware
 - panel admina
