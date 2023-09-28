@@ -21,7 +21,6 @@ using Polly;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
-builder.Logging.SetMinimumLevel(LogLevel.Trace);
 builder.Host.UseNLog();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
