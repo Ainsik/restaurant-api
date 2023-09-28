@@ -1,3 +1,4 @@
+using Api.Middleware;
 using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Dto.Address;
@@ -22,6 +23,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.SetMinimumLevel(LogLevel.Trace);
 builder.Host.UseNLog();
+
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 builder.Services.AddControllers();
 
@@ -70,6 +73,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
