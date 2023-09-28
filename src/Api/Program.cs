@@ -14,9 +14,14 @@ using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+builder.Host.UseNLog();
 
 builder.Services.AddControllers();
 
