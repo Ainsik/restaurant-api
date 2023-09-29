@@ -62,7 +62,7 @@ public class RestaurantService : IRestaurantService
 
     public async Task UpdateAsync(int id, UpdateRestaurantDto dto)
     {
-        _logger.LogTrace($"Restaurant with id: {id} UPDATE action invoked.");
+        _logger.LogTrace($"UPDATE restaurant with id: {id} action invoked.");
 
         var updateRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
 
@@ -79,7 +79,7 @@ public class RestaurantService : IRestaurantService
 
     public async Task DeleteAsync(int id)
     {
-        _logger.LogTrace($"Restaurant with id: {id} DELETE action invoked.");
+        _logger.LogTrace($"DELETE restaurant with id: {id} action invoked.");
 
         var deleteRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
 
