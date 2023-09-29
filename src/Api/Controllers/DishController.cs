@@ -15,6 +15,14 @@ public class DishController : ControllerBase
         _dishService = dishService;
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<DishDto>>> GetAllDishesAsync(int restaurantId)
+    {
+        var dishes = await _dishService.GetAllAsync(restaurantId);
+
+        return Ok(dishes);
+    }
+
     [HttpGet("{dishId}")]
     public async Task<ActionResult<DishDto>> GetDishAsync([FromRoute] int restaurantId, [FromRoute] int dishId)
     {

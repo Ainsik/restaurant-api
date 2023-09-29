@@ -21,9 +21,22 @@ public class DishService : IDishService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<DishDto>> GetAllAsync()
+    public async Task<IEnumerable<DishDto>> GetAllAsync(int restaurantId)
     {
-        throw new NotImplementedException();
+        _logger.LogTrace($"GET restaurant with id: {restaurantId} action invoked.");
+
+        var restaurant = await _unitOfWork.RestaurantRepository
+            .GetAsync(d => d.Id == restaurantId, includeProperties: "Dishes");
+
+        if (restaurant is null)
+        {
+            _logger.LogError($"ACTION: GET, Restaurant with id: {restaurantId} doesn't exist.");
+            throw new NotFoundApiException(nameof(RestaurantDto), restaurantId.ToString());
+        }
+
+        var dishDtos = _mapper.Map<List<DishDto>>(restaurant.Dishes);
+
+        return dishDtos;
     }
 
     public async Task<DishDto> GetByIdAsync(int restaurantId, int id)
