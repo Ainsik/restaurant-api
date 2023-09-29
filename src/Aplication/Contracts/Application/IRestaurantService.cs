@@ -1,5 +1,4 @@
 ﻿using Application.Dto.Restaurant;
-using Core.Entities;
 
 namespace Application.Contracts.Application;
 public interface IRestaurantService
