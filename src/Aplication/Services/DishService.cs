@@ -38,13 +38,7 @@ public class DishService : IDishService
 
         await GetRestaurantById(restaurantId);
 
-        var dish = await _unitOfWork.DishRepository.GetAsync(id);
-
-        if (dish is null || dish.RestaurantId != restaurantId)
-        {
-            _logger.LogError($"ACTION: GET, Dish with id: {id} in restaurant id: {restaurantId} doesn't exist.");
-            throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
-        }
+        var dish = await GetDishById(restaurantId, id);
 
         var dishDto = _mapper.Map<DishDto>(dish);
 
@@ -86,13 +80,7 @@ public class DishService : IDishService
 
         await GetRestaurantById(restaurantId);
 
-        var dish = await _unitOfWork.DishRepository.GetAsync(id);
-
-        if (dish is null || dish.RestaurantId != restaurantId)
-        {
-            _logger.LogError($"ACTION: GET, Dish with id: {id} in restaurant id: {restaurantId} doesn't exist.");
-            throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
-        }
+        var dish = await GetDishById(restaurantId, id);
 
         _unitOfWork.DishRepository.Remove(dish);
         await _unitOfWork.SaveAsync();
@@ -107,5 +95,15 @@ public class DishService : IDishService
 
         _logger.LogError($"ACTION: GET, Restaurant with id: {restaurantId} doesn't exist.");
         throw new NotFoundApiException(nameof(RestaurantDto), restaurantId.ToString());
+    }
+
+    private async Task<Dish> GetDishById(int restaurantId, int dishId)
+    {
+        var dish = await _unitOfWork.DishRepository.GetAsync(dishId);
+
+        if (dish is not null && dish.RestaurantId == restaurantId) return dish;
+
+        _logger.LogError($"ACTION: GET, Dish with id: {dishId} in restaurant id: {restaurantId} doesn't exist.");
+        throw new NotFoundApiException(nameof(RestaurantDto), dishId.ToString());
     }
 }
