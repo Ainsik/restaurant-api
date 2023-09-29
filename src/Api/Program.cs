@@ -24,6 +24,7 @@ builder.Logging.ClearProviders();
 builder.Host.UseNLog();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<RequestTimeMiddleware>();
 
 builder.Services.AddControllers();
 
@@ -74,6 +75,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<RequestTimeMiddleware>();
 
 app.UseHttpsRedirection();
 
