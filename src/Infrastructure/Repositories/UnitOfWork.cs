@@ -6,6 +6,7 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly RestaurantDbContext _context;
     public IRestaurantRepository RestaurantRepository => new RestaurantRepository(_context);
+    public IDishRepository DishRepository => new DishRepository(_context);
 
     public UnitOfWork(RestaurantDbContext context)
     {

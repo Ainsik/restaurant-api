@@ -2,5 +2,6 @@
 public interface IUnitOfWork : IDisposable
 {
     IRestaurantRepository RestaurantRepository { get; }
+    IDishRepository DishRepository { get; }
     Task SaveAsync();
 }
