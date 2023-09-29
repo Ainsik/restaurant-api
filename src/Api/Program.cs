@@ -50,6 +50,7 @@ builder.Services.AddScoped<IValidator<UpdateDishDto>, UpdateDishDtoValidator>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<IDishService, DishService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
