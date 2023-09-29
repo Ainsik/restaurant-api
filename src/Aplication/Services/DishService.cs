@@ -23,7 +23,7 @@ public class DishService : IDishService
 
     public async Task<IEnumerable<DishDto>> GetAllAsync(int restaurantId)
     {
-        _logger.LogTrace($"GET ALL dishes action invoked.");
+        _logger.LogTrace("GET ALL dishes action invoked.");
 
         var restaurant = await GetRestaurantById(restaurantId, "Dishes");
 
@@ -42,7 +42,7 @@ public class DishService : IDishService
 
         if (dish is null || dish.RestaurantId != restaurantId)
         {
-            _logger.LogError($"ACTION: GET, Dish with id: {id} doesn't exist.");
+            _logger.LogError($"ACTION: GET, Dish with id: {id} in restaurant id: {restaurantId} doesn't exist.");
             throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
         }
 
@@ -80,9 +80,22 @@ public class DishService : IDishService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(int restaurantId, int id)
     {
-        throw new NotImplementedException();
+        _logger.LogTrace($"DELETE dish with id: {id} from restaurant id: {restaurantId} action invoked.");
+
+        await GetRestaurantById(restaurantId);
+
+        var dish = await _unitOfWork.DishRepository.GetAsync(id);
+
+        if (dish is null || dish.RestaurantId != restaurantId)
+        {
+            _logger.LogError($"ACTION: GET, Dish with id: {id} in restaurant id: {restaurantId} doesn't exist.");
+            throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
+        }
+
+        _unitOfWork.DishRepository.Remove(dish);
+        await _unitOfWork.SaveAsync();
     }
 
     private async Task<Restaurant> GetRestaurantById(int restaurantId, string? includeProperties = null)

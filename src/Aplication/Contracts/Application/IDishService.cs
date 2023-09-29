@@ -8,5 +8,5 @@ public interface IDishService
     Task CreateAsync(int restaurantId, NewDishDto dto);
     Task UpdateAsync(int id, UpdateDishDto dto);
     Task DeleteAllAsync(int restaurantId);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(int restaurantId, int id);
 }

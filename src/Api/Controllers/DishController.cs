@@ -39,6 +39,14 @@ public class DishController : ControllerBase
         return Ok();
     }
 
+    [HttpDelete("{dishId}")]
+    public async Task<ActionResult> DeleteDish([FromRoute] int restaurantId, [FromRoute] int dishId)
+    {
+        await _dishService.DeleteAsync(restaurantId, dishId);
+
+        return NoContent();
+    }
+
     [HttpDelete]
     public async Task<ActionResult> DeleteAllDishes([FromRoute] int restaurantId)
     {
