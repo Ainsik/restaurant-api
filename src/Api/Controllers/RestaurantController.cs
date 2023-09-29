@@ -43,6 +43,7 @@ public class RestaurantController : ControllerBase
     public async Task<ActionResult> UpdateContact([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
     {
         await _restaurantService.UpdateAsync(id, dto);
+
         return NoContent();
     }
 
@@ -50,6 +51,7 @@ public class RestaurantController : ControllerBase
     public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
     {
         await _restaurantService.DeleteAsync(id);
+
         return NoContent();
     }
 }
