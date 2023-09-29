@@ -22,6 +22,8 @@ public class MappingProfile : Profile
         CreateMap<UpdateRestaurantDto, Restaurant>();
 
         CreateMap<Dish, DishDto>();
+
+        CreateMap<NewDishDto, Dish>();
     }
 }
 
