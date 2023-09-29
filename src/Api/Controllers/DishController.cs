@@ -15,6 +15,14 @@ public class DishController : ControllerBase
         _dishService = dishService;
     }
 
+    [HttpGet("{dishId}")]
+    public async Task<ActionResult<DishDto>> GetDishAsync([FromRoute] int restaurantId, [FromRoute] int dishId)
+    {
+        var dish = await _dishService.GetByIdAsync(restaurantId, dishId);
+
+        return Ok(dish);
+    }
+
     [HttpPost]
     public async Task<ActionResult> CreateDishAsync([FromRoute] int restaurantId,[FromBody] NewDishDto dto)
     {
