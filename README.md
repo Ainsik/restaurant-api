@@ -1,8 +1,9 @@
 # To Do
 
 ## Backedn
-- seeder
-- middleware
+- dish update endpoint
+- refaktor restaurant controller
+- seeder sprawdzic refaktor
 - panel admina
 - autoryzacja i autentykacja
 
