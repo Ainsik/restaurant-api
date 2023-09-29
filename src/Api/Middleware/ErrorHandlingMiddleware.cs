@@ -1,4 +1,6 @@
-﻿namespace Api.Middleware
+﻿using Application.Exceptions;
+
+namespace Api.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
@@ -13,6 +15,11 @@
             try
             {
                 await next.Invoke(context);
+            }
+            catch (NotFoundApiException notFoundApiException)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(notFoundApiException.Message);
             }
             catch (Exception e)
             {
