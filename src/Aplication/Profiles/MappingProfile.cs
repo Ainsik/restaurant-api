@@ -24,6 +24,8 @@ public class MappingProfile : Profile
         CreateMap<Dish, DishDto>();
 
         CreateMap<NewDishDto, Dish>();
+
+        CreateMap<UpdateDishDto, Dish>();
     }
 }
 
