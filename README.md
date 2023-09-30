@@ -1,11 +1,12 @@
 # To Do
 
 ## Backedn
-- dish update endpoint
-- refaktor restaurant controller
-- seeder sprawdzic refaktor
 - panel admina
 - autoryzacja i autentykacja
+- testy
+- CI/CD
+- refaktor restaurant controller
+- seeder sprawdzic refaktor
 
 ## Frontend
 - 
