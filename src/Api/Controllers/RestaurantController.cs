@@ -40,7 +40,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateContact([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
+    public async Task<ActionResult> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
     {
         await _restaurantService.UpdateAsync(id, dto);
 
