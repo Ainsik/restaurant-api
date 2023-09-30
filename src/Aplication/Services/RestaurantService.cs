@@ -72,7 +72,7 @@ public class RestaurantService : IRestaurantService
             throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
         }
 
-        _mapper.Map(updateRestaurant, dto);
+        _mapper.Map(dto, updateRestaurant);
         _unitOfWork.RestaurantRepository.Modify(updateRestaurant);
         await _unitOfWork.SaveAsync();
     }

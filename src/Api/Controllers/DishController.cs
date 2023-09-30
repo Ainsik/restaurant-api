@@ -32,11 +32,19 @@ public class DishController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateDishAsync([FromRoute] int restaurantId,[FromBody] NewDishDto dto)
+    public async Task<ActionResult> CreateDishAsync([FromRoute] int restaurantId, [FromBody] NewDishDto dto)
     {
         await _dishService.CreateAsync(restaurantId, dto);
 
         return Ok();
+    }
+
+    [HttpPut("{dishId}")]
+    public async Task<ActionResult> UpdateDish([FromRoute] int restaurantId, [FromRoute] int dishId, [FromBody] UpdateDishDto dto)
+    {
+        await _dishService.UpdateAsync(restaurantId, dishId, dto);
+
+        return NoContent();
     }
 
     [HttpDelete("{dishId}")]

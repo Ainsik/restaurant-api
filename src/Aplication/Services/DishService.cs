@@ -59,9 +59,17 @@ public class DishService : IDishService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task UpdateAsync(int id, UpdateDishDto dto)
+    public async Task UpdateAsync(int restaurantId, int id, UpdateDishDto dto)
     {
-        throw new NotImplementedException();
+        _logger.LogTrace($"UPDATE dish with id: {id} from restaurant id: {restaurantId} action invoked.");
+
+        await GetRestaurantById(restaurantId, "Dishes");
+
+        var updateDish = await GetDishById(restaurantId, id);
+
+        _mapper.Map(dto, updateDish);
+        _unitOfWork.DishRepository.Modify(updateDish);
+        await _unitOfWork.SaveAsync();
     }
 
     public async Task DeleteAllAsync(int restaurantId)
@@ -103,7 +111,7 @@ public class DishService : IDishService
 
         if (dish is not null && dish.RestaurantId == restaurantId) return dish;
 
-        _logger.LogError($"ACTION: GET, Dish with id: {dishId} in restaurant id: {restaurantId} doesn't exist.");
+        _logger.LogError($"ACTION: GET, Dish with id: {dishId} from restaurant id: {restaurantId} doesn't exist.");
         throw new NotFoundApiException(nameof(RestaurantDto), dishId.ToString());
     }
 }
