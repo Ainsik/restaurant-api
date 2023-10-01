@@ -6,7 +6,7 @@ public class User
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public DateTime? DateOfBirth { get; set; }
-    public DateTime CreatedDate { get; set; } = DateTime.Now;
+    public string CreatedDate { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
     public string Nationality { get; set; }
     public string PasswordHash { get; set; }
     public int RoleId { get; set; }
