@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20231001175924_Init")]
+    [Migration("20231001193506_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -150,13 +150,7 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Roles");
                 });
@@ -201,10 +195,15 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -231,15 +230,15 @@ namespace Infrastructure.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("Core.Entities.Role", b =>
+            modelBuilder.Entity("Core.Entities.User", b =>
                 {
-                    b.HasOne("Core.Entities.User", "User")
-                        .WithOne("Role")
-                        .HasForeignKey("Core.Entities.Role", "UserId")
+                    b.HasOne("Core.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Core.Entities.Restaurant", b =>
@@ -248,12 +247,6 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Dishes");
-                });
-
-            modelBuilder.Entity("Core.Entities.User", b =>
-                {
-                    b.Navigation("Role")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
