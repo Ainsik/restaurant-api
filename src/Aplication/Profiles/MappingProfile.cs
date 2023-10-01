@@ -1,5 +1,6 @@
 ﻿using Application.Dto.Dish;
 using Application.Dto.Restaurant;
+using Application.Dto.User;
 using AutoMapper;
 using Core.Entities;
 
@@ -26,6 +27,9 @@ public class MappingProfile : Profile
         CreateMap<NewDishDto, Dish>();
 
         CreateMap<UpdateDishDto, Dish>();
+
+        CreateMap<NewUserDto, User>()
+            .ForMember(u => u.PasswordHash, x => x.MapFrom(d => d.Password));
     }
 }
 
