@@ -6,9 +6,9 @@ public class RoleConfiguration : IEntityTypeConfiguration<Core.Entities.Role>
 {
     public void Configure(EntityTypeBuilder<Core.Entities.Role> builder)
     {
-        builder.HasMany(r => r.Users)
+        builder.HasOne(r => r.User)
             .WithOne(u => u.Role)
-            .HasForeignKey(u => u.RoleId)
+            .HasForeignKey<Core.Entities.Role>(r => r.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.Property(r => r.Name)

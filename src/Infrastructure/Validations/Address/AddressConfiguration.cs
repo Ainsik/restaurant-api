@@ -8,7 +8,7 @@ public class AddressConfiguration : IEntityTypeConfiguration<Core.Entities.Addre
     {
         builder.HasOne(a => a.Restaurant)
             .WithOne(r => r.Address)
-            .HasForeignKey<Core.Entities.Address>(r => r.RestaurantId)
+            .HasForeignKey<Core.Entities.Address>(a => a.RestaurantId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.Property(a => a.City)

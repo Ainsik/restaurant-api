@@ -95,17 +95,14 @@ public class Seeder
             new Role
             {
                 Name = "User",
-                Users = new List<User>()
+                User = new User()
                 {
-                    new User()
-                    {
-                        Email = "user01@o2.pl",
-                        FirstName = "User",
-                        LastName = "Test",
-                        DateOfBirth = new DateTime(1990, 5, 11),
-                        Nationality = "Poland",
-                        PasswordHash = "test123"
-                    }
+                    Email = "user01@o2.pl",
+                    FirstName = "User",
+                    LastName = "Test",
+                    DateOfBirth = new DateTime(1990, 5, 11),
+                    Nationality = "Poland",
+                    PasswordHash = "test123"
                 }
             },
             new Role()

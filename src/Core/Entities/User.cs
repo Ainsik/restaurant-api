@@ -9,6 +9,5 @@ public class User
     public string CreatedDate { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
     public string Nationality { get; set; }
     public string PasswordHash { get; set; }
-    public int RoleId { get; set; }
     public virtual Role Role { get; set; }
 }
