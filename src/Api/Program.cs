@@ -4,6 +4,7 @@ using Application.Contracts.Infrastructure;
 using Application.Dto.Address;
 using Application.Dto.Dish;
 using Application.Dto.Restaurant;
+using Application.Dto.User;
 using Application.Profiles;
 using Application.Services;
 using FluentValidation;
@@ -14,6 +15,7 @@ using Infrastructure.Seeder;
 using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
+using Infrastructure.Validations.User;
 using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Polly;
@@ -35,7 +37,7 @@ builder.Services.AddDbContext<RestaurantDbContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnectionString"))
 );
 
-builder.Services.AddScoped<RestaurantSeeder>();
+builder.Services.AddScoped<Seeder>();
 
 builder.Services.AddFluentValidation();
 
@@ -48,9 +50,12 @@ builder.Services.AddScoped<IValidator<UpdateRestaurantDto>, UpdateRestaurantDtoV
 builder.Services.AddScoped<IValidator<NewDishDto>, NewDishDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateDishDto>, UpdateDishDtoValidator>();
 
+builder.Services.AddScoped<IValidator<NewUserDto>, NewUserDtoValidator>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IDishService, DishService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -92,7 +97,7 @@ var policy = Policy
     .Handle<Exception>()
     .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
 
-var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
+var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
 seeder.Seed();
 
 policy.Execute(() =>

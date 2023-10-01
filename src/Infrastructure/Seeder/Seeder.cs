@@ -1,13 +1,13 @@
 ﻿using Core.Entities;
 using Infrastructure.DbContext;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Seeder;
-public class RestaurantSeeder
+public class Seeder
 {
     private readonly RestaurantDbContext _dbContext;
 
-    public RestaurantSeeder(RestaurantDbContext dbContext)
+    public Seeder(RestaurantDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -16,6 +16,13 @@ public class RestaurantSeeder
     {
         if (_dbContext.Database.CanConnect())
         {
+            if (!_dbContext.Roles.Any())
+            {
+                var roles = GetRoles();
+                _dbContext.Roles.AddRange(roles);
+                _dbContext.SaveChanges();
+            }
+
             if (!_dbContext.Restaurants.Any())
             {
                 var restaurants = GetRestaurants();
@@ -81,4 +88,24 @@ public class RestaurantSeeder
         return restaurants;
     }
 
+    private IEnumerable<Role> GetRoles()
+    {
+        var roles = new List<Role>()
+        {
+            new Role
+            {
+                Name = "User",
+            },
+            new Role()
+            {
+                Name = "Owner"
+            },
+            new Role()
+            {
+                Name = "Admin"
+            }
+        };
+
+        return roles;
+    }
 }
