@@ -4,6 +4,7 @@ using Application.Contracts.Infrastructure;
 using Application.Dto.Address;
 using Application.Dto.Dish;
 using Application.Dto.Restaurant;
+using Application.Dto.User;
 using Application.Profiles;
 using Application.Services;
 using FluentValidation;
@@ -14,6 +15,7 @@ using Infrastructure.Seeder;
 using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
+using Infrastructure.Validations.User;
 using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Polly;
@@ -47,6 +49,8 @@ builder.Services.AddScoped<IValidator<UpdateRestaurantDto>, UpdateRestaurantDtoV
 
 builder.Services.AddScoped<IValidator<NewDishDto>, NewDishDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateDishDto>, UpdateDishDtoValidator>();
+
+builder.Services.AddScoped<IValidator<NewUserDto>, NewUserDtoValidator>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
