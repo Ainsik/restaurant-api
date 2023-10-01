@@ -35,7 +35,7 @@ builder.Services.AddDbContext<RestaurantDbContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnectionString"))
 );
 
-builder.Services.AddScoped<RestaurantSeeder>();
+builder.Services.AddScoped<Seeder>();
 
 builder.Services.AddFluentValidation();
 
@@ -92,7 +92,7 @@ var policy = Policy
     .Handle<Exception>()
     .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
 
-var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
+var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
 seeder.Seed();
 
 policy.Execute(() =>
