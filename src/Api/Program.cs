@@ -77,7 +77,8 @@ builder.Services.AddScoped<IValidator<UpdateRestaurantDto>, UpdateRestaurantDtoV
 builder.Services.AddScoped<IValidator<NewDishDto>, NewDishDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateDishDto>, UpdateDishDtoValidator>();
 
-builder.Services.AddScoped<IValidator<NewUserDto>, NewUserDtoValidator>();
+builder.Services.AddScoped<IValidator<RegisterDto>, RegisterDtoValidator>();
+builder.Services.AddScoped<IValidator<LoginDto>, LoginValidator>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();

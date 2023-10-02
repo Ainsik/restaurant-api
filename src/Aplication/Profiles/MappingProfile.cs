@@ -28,8 +28,10 @@ public class MappingProfile : Profile
 
         CreateMap<UpdateDishDto, Dish>();
 
-        CreateMap<NewUserDto, User>()
+        CreateMap<RegisterDto, User>()
             .ForMember(u => u.PasswordHash, x => x.MapFrom(d => d.Password));
+
+        CreateMap<LoginDto, User>();
     }
 }
 
