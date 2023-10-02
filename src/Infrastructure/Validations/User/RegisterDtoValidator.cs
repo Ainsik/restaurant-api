@@ -4,9 +4,9 @@ using FluentValidation;
 using Infrastructure.DbContext;
 
 namespace Infrastructure.Validations.User;
-public class NewUserDtoValidator : AbstractValidator<NewUserDto>
+public class RegisterDtoValidator : AbstractValidator<RegisterDto>
 {
-    public NewUserDtoValidator(RestaurantDbContext dbContext)
+    public RegisterDtoValidator(RestaurantDbContext dbContext)
     {
         RuleFor(u => u.Email)
             .NotEmpty().WithMessage("User e-mail is required.")

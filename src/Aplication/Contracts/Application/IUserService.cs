@@ -3,5 +3,5 @@
 namespace Application.Contracts.Application;
 public interface IUserService
 {
-    Task CreateAsync(NewUserDto dto);
+    Task CreateAsync(RegisterDto dto);
 }

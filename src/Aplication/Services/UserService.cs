@@ -21,7 +21,7 @@ public class UserService : IUserService
         _logger = logger;
         _passwordHasher = passwordHasher;
     }
-    public async Task CreateAsync(NewUserDto dto)
+    public async Task CreateAsync(RegisterDto dto)
     {
         _logger.LogTrace("CREATE new user action invoked.");
 
