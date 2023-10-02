@@ -30,7 +30,7 @@ public class UserService : IUserService
         _passwordHasher = passwordHasher;
         _authenticationSettings = authenticationSettings;
     }
-    public async Task CreateAsync(RegisterDto dto)
+    public async Task Register(RegisterDto dto)
     {
         _logger.LogTrace("Register action invoked.");
 
@@ -43,7 +43,7 @@ public class UserService : IUserService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task<string> GenerateJwt(LoginDto dto)
+    public async Task<string> Login(LoginDto dto)
     {
         _logger.LogTrace("Login action invoked.");
 
@@ -63,6 +63,13 @@ public class UserService : IUserService
             throw new BadRequestException("Invalid username or password");
         }
 
+        var tokenJwt = GenerateJwt(user);
+
+        return tokenJwt;
+    }
+
+    private string GenerateJwt(User user)
+    {
         var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),

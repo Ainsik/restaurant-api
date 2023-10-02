@@ -3,6 +3,6 @@
 namespace Application.Contracts.Application;
 public interface IUserService
 {
-    Task CreateAsync(RegisterDto dto);
-    Task<string> GenerateJwt(LoginDto dto);
+    Task Register(RegisterDto dto);
+    Task<string> Login(LoginDto dto);
 }
