@@ -1,5 +1,5 @@
 ﻿namespace Application.Dto.User;
-public class NewUserDto
+public class RegisterDto
 {
     public string Email { get; set; }
     public string FirstName { get; set; }

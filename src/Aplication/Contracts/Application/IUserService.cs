@@ -3,5 +3,6 @@
 namespace Application.Contracts.Application;
 public interface IUserService
 {
-    Task CreateAsync(NewUserDto dto);
+    Task Register(RegisterDto dto);
+    Task<string> Login(LoginDto dto);
 }

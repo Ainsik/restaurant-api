@@ -16,10 +16,18 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult> RegisterUser([FromBody] NewUserDto dto)
+    public async Task<ActionResult> Register([FromBody] RegisterDto dto)
     {
-        await _userService.CreateAsync(dto);
+        await _userService.Register(dto);
 
         return Ok();
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult> Login([FromBody] LoginDto dto)
+    {
+        var token = await _userService.Login(dto);
+
+        return Ok(token);
     }
 }

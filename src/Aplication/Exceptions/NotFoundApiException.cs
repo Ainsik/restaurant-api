@@ -1,9 +1,7 @@
 ﻿namespace Application.Exceptions;
 
-public class NotFoundApiException : ApiException
+public class NotFoundApiException : Exception
 {
-    public NotFoundApiException() : base() { }
-
     public NotFoundApiException(string message) : base(message)
     {
     }
