@@ -7,6 +7,7 @@ using Application.Dto.Restaurant;
 using Application.Dto.User;
 using Application.Profiles;
 using Application.Services;
+using Core.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.DbContext;
@@ -16,6 +17,7 @@ using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
 using Infrastructure.Validations.User;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NLog.Web;
 using Polly;
@@ -27,6 +29,8 @@ builder.Host.UseNLog();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
+
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 builder.Services.AddControllers();
 
