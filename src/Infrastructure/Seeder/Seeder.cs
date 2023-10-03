@@ -23,6 +23,13 @@ public class Seeder
                 _dbContext.SaveChanges();
             }
 
+            if (!_dbContext.Users.Any())
+            {
+                var admin = CreateAdmin();
+                _dbContext.Users.Add(admin);
+                _dbContext.SaveChanges();
+            }
+
             if (!_dbContext.Restaurants.Any())
             {
                 var restaurants = GetRestaurants();
@@ -107,5 +114,20 @@ public class Seeder
         };
 
         return roles;
+    }
+
+    private User CreateAdmin()
+    {
+        var admin = new User
+        {
+            Email = "admin@gmail.com",
+            FirstName = "Admin",
+            LastName = "Admin",
+            Nationality = "Admin",
+            PasswordHash = "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==",
+            RoleId = 3
+        };
+
+        return admin;
     }
 }

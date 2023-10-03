@@ -75,7 +75,7 @@ public class UserService : IUserService
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
             new Claim(ClaimTypes.Role, user.Role.Name),
-            new Claim("DateOfBirth", user.DateOfBirth!.Value.ToString("dd/MM/yyyy")),
+            new Claim("DateOfBirth", user.DateOfBirth?.ToString("dd/MM/yyyy") ?? string.Empty),
             new Claim("Nationality", user.Nationality)
         };
 
