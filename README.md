@@ -1,8 +1,6 @@
 # To Do
 
 ## Backedn
-- panel admina
-- autoryzacja i autentykacja
 - testy
 - CI/CD
 - refaktor restaurant controller
@@ -81,6 +79,13 @@ This is a simple restaurant management application that consists of a back-end A
    ```
 
 7. Access the application in your web browser at `http://localhost:8080`.
+
+8. Admin access:
+
+   ```bash
+   Email = admin@gmail.com
+   Password = Admin01!
+   ```
 
 ## API Documentation
 
