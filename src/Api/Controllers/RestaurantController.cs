@@ -35,9 +35,7 @@ public class RestaurantController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateRestaurantAsync([FromBody] NewRestaurantDto dto)
     {
-        var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
-
-        await _restaurantService.CreateAsync(dto, userId);
+        await _restaurantService.CreateAsync(dto);
 
         return Ok();
     }
@@ -45,7 +43,7 @@ public class RestaurantController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
     {
-        await _restaurantService.UpdateAsync(id, dto, User);
+        await _restaurantService.UpdateAsync(id, dto);
 
         return NoContent();
     }
@@ -53,7 +51,7 @@ public class RestaurantController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
     {
-        await _restaurantService.DeleteAsync(id, User);
+        await _restaurantService.DeleteAsync(id);
 
         return NoContent();
     }

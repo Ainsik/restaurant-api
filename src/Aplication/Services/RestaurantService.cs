@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using Application.Authorization;
+﻿using Application.Authorization;
 using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Dto.Restaurant;
@@ -16,14 +15,17 @@ public class RestaurantService : IRestaurantService
     private readonly IMapper _mapper;
     private readonly ILogger<RestaurantService> _logger;
     private readonly IAuthorizationService _authorizationService;
+    private readonly IUserContextService _userContextService;
 
     public RestaurantService(IUnitOfWork unitOfWork, IMapper mapper, 
-        ILogger<RestaurantService> logger, IAuthorizationService authorizationService)
+        ILogger<RestaurantService> logger, IAuthorizationService authorizationService,
+        IUserContextService userContextService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _logger = logger;
         _authorizationService = authorizationService;
+        _userContextService = userContextService;
     }
 
     public async Task<IEnumerable<RestaurantDto>> GetAllAsync()
@@ -56,19 +58,19 @@ public class RestaurantService : IRestaurantService
         return restaurantDto;
     }
 
-    public async Task CreateAsync(NewRestaurantDto dto, int userId)
+    public async Task CreateAsync(NewRestaurantDto dto)
     {
         _logger.LogTrace("CREATE new restaurant action invoked.");
 
         var restaurant = _mapper.Map<Restaurant>(dto);
 
-        restaurant.CreatedById = userId;
+        restaurant.CreatedById = _userContextService.GetUserId;
 
         await _unitOfWork.RestaurantRepository.AddAsync(restaurant);
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task UpdateAsync(int id, UpdateRestaurantDto dto, ClaimsPrincipal user)
+    public async Task UpdateAsync(int id, UpdateRestaurantDto dto)
     {
         _logger.LogTrace($"UPDATE restaurant with id: {id} action invoked.");
 
@@ -80,7 +82,7 @@ public class RestaurantService : IRestaurantService
             throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
         }
 
-        var authorizationResult = _authorizationService.AuthorizeAsync(user, updateRestaurant,
+        var authorizationResult = _authorizationService.AuthorizeAsync(_userContextService.User, updateRestaurant,
             new ResourceOperationRequirement(ResourceOperation.Update)).Result;
 
         if (!authorizationResult.Succeeded)
@@ -94,7 +96,7 @@ public class RestaurantService : IRestaurantService
         await _unitOfWork.SaveAsync();
     }
 
-    public async Task DeleteAsync(int id, ClaimsPrincipal user)
+    public async Task DeleteAsync(int id)
     {
         _logger.LogTrace($"DELETE restaurant with id: {id} action invoked.");
 
@@ -106,7 +108,7 @@ public class RestaurantService : IRestaurantService
             throw new NotFoundApiException("Wrong id.");
         }
 
-        var authorizationResult = _authorizationService.AuthorizeAsync(user, deleteRestaurant,
+        var authorizationResult = _authorizationService.AuthorizeAsync(_userContextService.User, deleteRestaurant,
             new ResourceOperationRequirement(ResourceOperation.Delete)).Result;
 
         if (!authorizationResult.Succeeded)
