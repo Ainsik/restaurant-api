@@ -1,5 +1,4 @@
 ﻿using Application.Exceptions;
-using AutoMapper.Internal;
 
 namespace Api.Middleware
 {
