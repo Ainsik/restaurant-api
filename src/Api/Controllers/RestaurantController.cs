@@ -27,6 +27,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize(Policy = "HasNationality")]
     public async Task<ActionResult<RestaurantDto>> GetRestaurantAsync([FromRoute] int id)
     {
         var restaurant = await _restaurantService.GetByIdAsync(id);

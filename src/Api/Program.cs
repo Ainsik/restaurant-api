@@ -50,6 +50,11 @@ builder.Services.AddAuthentication(option =>
     };
 });
 
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("HasNationality", claim => claim.RequireClaim("Nationality"));
+});
+
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
 
