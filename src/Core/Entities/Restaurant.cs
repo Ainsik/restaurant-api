@@ -10,4 +10,6 @@ public class Restaurant
     public string ContactNumber { get; set; }
     public virtual Address Address { get; set; }
     public virtual List<Dish> Dishes { get; set; }
+    public int? CreatedById { get; set; }
+    public virtual User CreatedBy { get; set; }
 }

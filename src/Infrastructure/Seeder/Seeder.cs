@@ -1,6 +1,5 @@
 ﻿using Core.Entities;
 using Infrastructure.DbContext;
-using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Seeder;
 public class Seeder

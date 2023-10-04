@@ -1,4 +1,5 @@
 ﻿using Application.Dto.Restaurant;
+using System.Security.Claims;
 
 namespace Application.Contracts.Application;
 public interface IRestaurantService
