@@ -52,7 +52,7 @@ builder.Services.AddAuthentication(option =>
 
 builder.Services.AddAuthorization(option =>
 {
-    option.AddPolicy("HasNationality", claim => claim.RequireClaim("Nationality"));
+    option.AddPolicy("HasNationality", claim => claim.RequireClaim("Nationality", "Polish", "English"));
 });
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
