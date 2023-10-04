@@ -42,7 +42,7 @@ public class RestaurantService : IRestaurantService
 
     public async Task<RestaurantDto> GetByIdAsync(int id)
     {
-        _logger.LogTrace($"GET restaurant with id: {id} action invoked.");
+        _logger.LogTrace($"GET restaurant id: {id} action invoked.");
 
         var restaurant = await _unitOfWork.RestaurantRepository
             .GetAsync(d => d.Id == id, includeProperties: "Address,Dishes");
@@ -68,17 +68,19 @@ public class RestaurantService : IRestaurantService
 
         await _unitOfWork.RestaurantRepository.AddAsync(restaurant);
         await _unitOfWork.SaveAsync();
+
+        _logger.LogTrace($"New restaurant id: {restaurant.Id} created by user id: {restaurant.CreatedById}");
     }
 
     public async Task UpdateAsync(int id, UpdateRestaurantDto dto)
     {
-        _logger.LogTrace($"UPDATE restaurant with id: {id} action invoked.");
+        _logger.LogTrace($"UPDATE restaurant id: {id} action invoked.");
 
         var updateRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
 
         if (updateRestaurant is null)
         {
-            _logger.LogError($"ACTION: UPDATE, Restaurant with id: {id} doesn't exist.");
+            _logger.LogError($"ACTION: UPDATE, Restaurant id: {id} doesn't exist.");
             throw new NotFoundApiException(nameof(RestaurantDto), id.ToString());
         }
 
@@ -87,24 +89,26 @@ public class RestaurantService : IRestaurantService
 
         if (!authorizationResult.Succeeded)
         {
-            _logger.LogError($"ACTION: UPDATE, User isn't a manager of restaurant: {updateRestaurant.Id}.");
+            _logger.LogError($"ACTION: UPDATE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {updateRestaurant.Id}.");
             throw new ForbidException("You aren't a manager of this restaurant.");
         }
 
         _mapper.Map(dto, updateRestaurant);
         _unitOfWork.RestaurantRepository.Modify(updateRestaurant);
         await _unitOfWork.SaveAsync();
+
+        _logger.LogTrace($"Restaurant id: {updateRestaurant.Id} updated by user id: {_userContextService.GetUserId}.");
     }
 
     public async Task DeleteAsync(int id)
     {
-        _logger.LogTrace($"DELETE restaurant with id: {id} action invoked.");
+        _logger.LogTrace($"DELETE restaurant id: {id} action invoked.");
 
         var deleteRestaurant = await _unitOfWork.RestaurantRepository.GetAsync(id);
 
         if (deleteRestaurant is null)
         {
-            _logger.LogError($"ACTION: DELETE, Restaurant with id: {id} doesn't exist.");
+            _logger.LogError($"ACTION: DELETE, Restaurant id: {id} doesn't exist.");
             throw new NotFoundApiException("Wrong id.");
         }
 
@@ -113,11 +117,13 @@ public class RestaurantService : IRestaurantService
 
         if (!authorizationResult.Succeeded)
         {
-            _logger.LogError($"ACTION: DELETE, User isn't a manager of restaurant: {deleteRestaurant.Id}.");
+            _logger.LogError($"ACTION: DELETE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {deleteRestaurant.Id}.");
             throw new ForbidException("You aren't a manager of this restaurant.");
         }
 
         _unitOfWork.RestaurantRepository.Remove(deleteRestaurant);
         await _unitOfWork.SaveAsync();
+
+        _logger.LogTrace($"Restaurant id: {deleteRestaurant.Id} deleted by user id: {_userContextService.GetUserId}.");
     }
 }
