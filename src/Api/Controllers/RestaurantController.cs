@@ -1,6 +1,6 @@
-﻿using Application.Contracts.Application;
+﻿using System.Security.Claims;
+using Application.Contracts.Application;
 using Application.Dto.Restaurant;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -35,7 +35,9 @@ public class RestaurantController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateRestaurantAsync([FromBody] NewRestaurantDto dto)
     {
-        await _restaurantService.CreateAsync(dto);
+        var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+        await _restaurantService.CreateAsync(dto, userId);
 
         return Ok();
     }
@@ -43,7 +45,7 @@ public class RestaurantController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
     {
-        await _restaurantService.UpdateAsync(id, dto);
+        await _restaurantService.UpdateAsync(id, dto, User);
 
         return NoContent();
     }
@@ -51,7 +53,7 @@ public class RestaurantController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
     {
-        await _restaurantService.DeleteAsync(id);
+        await _restaurantService.DeleteAsync(id, User);
 
         return NoContent();
     }
