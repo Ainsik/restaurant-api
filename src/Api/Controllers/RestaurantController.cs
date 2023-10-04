@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Application;
 using Application.Dto.Restaurant;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
