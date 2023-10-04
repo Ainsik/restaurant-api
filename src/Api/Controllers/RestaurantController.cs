@@ -1,11 +1,13 @@
 ﻿using Application.Contracts.Application;
 using Application.Dto.Restaurant;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
 [ApiController]
 [Route("/api/restaurant")]
+[Authorize]
 public class RestaurantController : ControllerBase
 {
     private readonly IRestaurantService _restaurantService;
@@ -16,6 +18,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurantsAsync()
     {
         var restaurants = await _restaurantService.GetAllAsync();
@@ -32,6 +35,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<ActionResult> CreateRestaurantAsync([FromBody] NewRestaurantDto dto)
     {
         await _restaurantService.CreateAsync(dto);
@@ -40,6 +44,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<ActionResult> UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
     {
         await _restaurantService.UpdateAsync(id, dto);
@@ -48,6 +53,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<ActionResult> DeleteRestaurant([FromRoute] int id)
     {
         await _restaurantService.DeleteAsync(id);
