@@ -33,7 +33,7 @@ public class RestaurantService : IRestaurantService
         _logger.LogTrace("GET ALL restaurants action invoked.");
 
         var restaurants = await _unitOfWork.RestaurantRepository
-            .GetAllAsync(includeProperties: "Dishes");
+            .GetAllAsync(includeProperties: "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
@@ -45,7 +45,7 @@ public class RestaurantService : IRestaurantService
         _logger.LogTrace($"GET restaurant with id: {id} action invoked.");
 
         var restaurant = await _unitOfWork.RestaurantRepository
-            .GetAsync(d => d.Id == id, includeProperties: "Dishes");
+            .GetAsync(d => d.Id == id, includeProperties: "Address,Dishes");
 
         if (restaurant is null)
         {
