@@ -37,6 +37,7 @@ public class RestaurantController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Admin,Manager")]
+    [Authorize(Policy = "Over18")]
     public async Task<ActionResult> CreateRestaurantAsync([FromBody] NewRestaurantDto dto)
     {
         await _restaurantService.CreateAsync(dto);

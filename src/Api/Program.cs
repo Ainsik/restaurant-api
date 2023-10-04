@@ -24,6 +24,8 @@ using Microsoft.IdentityModel.Tokens;
 using NLog.Web;
 using Polly;
 using System.Text;
+using Application.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,8 +54,11 @@ builder.Services.AddAuthentication(option =>
 
 builder.Services.AddAuthorization(option =>
 {
-    option.AddPolicy("HasNationality", claim => claim.RequireClaim("Nationality", "Polish", "English"));
+    option.AddPolicy("HasNationality", policyBuilder => policyBuilder.RequireClaim("Nationality", "Polish", "English"));
+    option.AddPolicy("Over18", policyBuilder => policyBuilder.AddRequirements(new MinimumAgeRequirement(18)));
 });
+
+builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<RequestTimeMiddleware>();
