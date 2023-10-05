@@ -25,8 +25,8 @@ public class Seeder
 
             if (!_dbContext.Users.Any())
             {
-                var admin = CreateAdmin();
-                _dbContext.Users.Add(admin);
+                var users = GetUsers();
+                _dbContext.Users.AddRange(users);
                 _dbContext.SaveChanges();
             }
 
@@ -39,7 +39,7 @@ public class Seeder
         }
     }
 
-    private IEnumerable<Restaurant> GetRestaurants()
+    private static IEnumerable<Restaurant> GetRestaurants()
     {
         var restaurants = new List<Restaurant>
         {
@@ -75,7 +75,8 @@ public class Seeder
                             "Chicken nuggets are bite-sized, golden-fried pieces of tender chicken, perfect for dipping and snacking.",
                         Price = 5.30M
                     }
-                }
+                },
+                CreatedById = 2
             },
             new()
             {
@@ -91,13 +92,14 @@ public class Seeder
                     City = "Kraków",
                     Street = "Szewska 2",
                     PostalCode = "30-001"
-                }
+                },
+                CreatedById = 2
             }
         };
         return restaurants;
     }
 
-    private IEnumerable<Role> GetRoles()
+    private static IEnumerable<Role> GetRoles()
     {
         var roles = new List<Role>
         {
@@ -118,18 +120,36 @@ public class Seeder
         return roles;
     }
 
-    private User CreateAdmin()
+    private static IEnumerable<User> GetUsers()
     {
-        var admin = new User
+        var users = new List<User>
         {
-            Email = "admin@gmail.com",
-            FirstName = "Admin",
-            LastName = "Admin",
-            Nationality = "Admin",
-            PasswordHash = "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==",
-            RoleId = 3
+            new ()
+            {
+                Email = "admin@gmail.com",
+                FirstName = "Admin",
+                LastName = "Admin",
+                PasswordHash = "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==", // Admin01!
+                RoleId = 3
+            },
+            new ()
+            {
+                Email = "manager@gmail.com",
+                FirstName = "Manager",
+                LastName = "Manager",
+                PasswordHash = "AQAAAAEAACcQAAAAEL1e8K19IqLWTvStxzflYU5LjYjQRXW/DwjbGdsQA0n2sgu9NcZWcWwKeDvOVb4Q5Q==", // Manager1!
+                RoleId = 2
+            },
+            new ()
+            {
+                Email = "user@gmail.com",
+                FirstName = "User",
+                LastName = "User",
+                PasswordHash = "AQAAAAEAACcQAAAAELvo4KMDKWD9WU6YPeZv71KM2WV/jJdc0nOvV9yqdzUmLHkS3efgsrvglFfmQlH/zg==", // User012!
+                RoleId = 1
+            }
         };
 
-        return admin;
+        return users;
     }
 }
