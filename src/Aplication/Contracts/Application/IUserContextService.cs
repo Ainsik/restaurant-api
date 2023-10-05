@@ -4,6 +4,6 @@ namespace Application.Contracts.Application;
 
 public interface IUserContextService
 {
-    ClaimsPrincipal? User { get; }
+    ClaimsPrincipal User { get; }
     int GetUserId { get; }
 }
