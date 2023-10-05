@@ -6,7 +6,7 @@ namespace Infrastructure.Validations.Restaurant;
 
 public class UpdateRestaurantDtoValidator : AbstractValidator<UpdateRestaurantDto>
 {
-    public UpdateRestaurantDtoValidator(RestaurantDbContext dbContext)
+    public UpdateRestaurantDtoValidator()
     {
         RuleFor(r => r.Name)
             .NotEmpty().WithMessage("Restaurant name is required.")
