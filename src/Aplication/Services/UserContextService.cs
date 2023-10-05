@@ -15,6 +15,6 @@ public class UserContextService : IUserContextService
 
     public ClaimsPrincipal User => _httpContextAccessor.HttpContext.User;
 
-    public int? GetUserId
+    public int GetUserId
         => int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
 }
