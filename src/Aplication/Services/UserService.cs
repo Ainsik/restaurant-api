@@ -76,9 +76,7 @@ public class UserService : IUserService
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-            new(ClaimTypes.Role, user.Role.Name),
-            new("DateOfBirth", user.DateOfBirth?.ToString("dd/MM/yyyy") ?? string.Empty),
-            new("Nationality", user.Nationality)
+            new(ClaimTypes.Role, user.Role.Name)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
