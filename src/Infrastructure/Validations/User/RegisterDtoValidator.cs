@@ -27,10 +27,6 @@ public class RegisterDtoValidator : AbstractValidator<RegisterDto>
             .NotEmpty().WithMessage("User last name is required.")
             .MaximumLength(50).WithMessage("User last name can't be longer than 50 characters.");
 
-        RuleFor(u => u.Nationality)
-            .NotEmpty().WithMessage("User nationality is required.")
-            .MaximumLength(50).WithMessage("User nationality can't be longer than 50 characters.");
-
         RuleFor(u => u.Password)
             .NotEmpty().WithMessage("User password is required.")
             .Matches(new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$"))

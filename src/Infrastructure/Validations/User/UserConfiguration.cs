@@ -22,10 +22,6 @@ public class UserConfiguration : IEntityTypeConfiguration<Core.Entities.User>
             .IsRequired()
             .HasMaxLength(50);
 
-        builder.Property(u => u.Nationality)
-            .IsRequired()
-            .HasMaxLength(50);
-
         builder.Property(u => u.PasswordHash)
             .IsRequired();
     }
