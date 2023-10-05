@@ -3,6 +3,7 @@ using Application.Dto.User;
 using FluentValidation;
 
 namespace Infrastructure.Validations.User;
+
 public class LoginValidator : AbstractValidator<LoginDto>
 {
     public LoginValidator()
@@ -15,6 +16,7 @@ public class LoginValidator : AbstractValidator<LoginDto>
         RuleFor(u => u.Password)
             .NotEmpty().WithMessage("User password is required.")
             .Matches(new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$"))
-            .WithMessage("Minimum 8 and maximum 50 characters, at least one uppercase letter, one lowercase letter, one number and one special character.");
+            .WithMessage(
+                "Minimum 8 and maximum 50 characters, at least one uppercase letter, one lowercase letter, one number and one special character.");
     }
 }

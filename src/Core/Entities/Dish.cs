@@ -1,4 +1,5 @@
 ﻿namespace Core.Entities;
+
 public class Dish
 {
     public int Id { get; set; }

@@ -2,6 +2,7 @@
 using Infrastructure.DbContext;
 
 namespace Infrastructure.Seeder;
+
 public class Seeder
 {
     private readonly RestaurantDbContext _dbContext;
@@ -40,9 +41,9 @@ public class Seeder
 
     private IEnumerable<Restaurant> GetRestaurants()
     {
-        var restaurants = new List<Restaurant>()
+        var restaurants = new List<Restaurant>
         {
-            new Restaurant()
+            new()
             {
                 Name = "KFC",
                 Description =
@@ -51,30 +52,32 @@ public class Seeder
                 HasDelivery = true,
                 ContactEmail = "contact@kfc.com",
                 ContactNumber = "123123123",
-                Address = new Address()
+                Address = new Address
                 {
                     City = "Kraków",
                     Street = "Długa 5",
                     PostalCode = "30-001"
                 },
-                Dishes = new List<Dish>()
+                Dishes = new List<Dish>
                 {
-                    new Dish()
+                    new()
                     {
                         Name = "Nashville Hot Chicken",
-                        Description = "Nashville Hot Chicken is a fiery and flavorful Southern dish featuring crispy fried chicken drenched in a spicy cayenne pepper-infused glaze.",
-                        Price = 10.30M,
+                        Description =
+                            "Nashville Hot Chicken is a fiery and flavorful Southern dish featuring crispy fried chicken drenched in a spicy cayenne pepper-infused glaze.",
+                        Price = 10.30M
                     },
 
-                    new Dish()
+                    new()
                     {
                         Name = "Chicken Nuggets",
-                        Description = "Chicken nuggets are bite-sized, golden-fried pieces of tender chicken, perfect for dipping and snacking.",
-                        Price = 5.30M,
-                    },
+                        Description =
+                            "Chicken nuggets are bite-sized, golden-fried pieces of tender chicken, perfect for dipping and snacking.",
+                        Price = 5.30M
+                    }
                 }
             },
-            new Restaurant()
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -83,7 +86,7 @@ public class Seeder
                 HasDelivery = true,
                 ContactEmail = "contact@mcdonald.com",
                 ContactNumber = "321321321",
-                Address = new Address()
+                Address = new Address
                 {
                     City = "Kraków",
                     Street = "Szewska 2",
@@ -96,17 +99,17 @@ public class Seeder
 
     private IEnumerable<Role> GetRoles()
     {
-        var roles = new List<Role>()
+        var roles = new List<Role>
         {
-            new Role
+            new()
             {
-                Name = "User",
+                Name = "User"
             },
-            new Role()
+            new()
             {
                 Name = "Owner"
             },
-            new Role()
+            new()
             {
                 Name = "Admin"
             }

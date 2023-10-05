@@ -1,4 +1,5 @@
 ﻿namespace Application.Dto.Dish;
+
 public class NewDishDto
 {
     public string Name { get; set; }

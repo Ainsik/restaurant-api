@@ -8,11 +8,12 @@ using Core.Entities;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
+
 public class DishService : IDishService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
     private readonly ILogger<DishService> _logger;
+    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
     public DishService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<DishService> logger)
     {

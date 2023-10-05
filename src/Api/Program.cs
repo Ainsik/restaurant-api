@@ -1,4 +1,6 @@
+using System.Text;
 using Api.Middleware;
+using Application.Authorization;
 using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Dto.Address;
@@ -18,15 +20,13 @@ using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
 using Infrastructure.Validations.Restaurant;
 using Infrastructure.Validations.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using NLog.Web;
 using Polly;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Application.Authorization;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

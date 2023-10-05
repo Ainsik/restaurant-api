@@ -1,6 +1,7 @@
 ﻿using Application.Dto.Dish;
 
 namespace Application.Contracts.Application;
+
 public interface IDishService
 {
     Task<IEnumerable<DishDto>> GetAllAsync(int restaurantId);

@@ -1,8 +1,9 @@
-﻿using Application.Dto.Address;
+﻿using System.Text.RegularExpressions;
+using Application.Dto.Address;
 using FluentValidation;
-using System.Text.RegularExpressions;
 
 namespace Infrastructure.Validations.Address;
+
 public class NewAddressDtoValidator : AbstractValidator<NewAddressDto>
 {
     public NewAddressDtoValidator()

@@ -9,15 +9,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
+
 public class RestaurantService : IRestaurantService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ILogger<RestaurantService> _logger;
     private readonly IAuthorizationService _authorizationService;
+    private readonly ILogger<RestaurantService> _logger;
+    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IUserContextService _userContextService;
 
-    public RestaurantService(IUnitOfWork unitOfWork, IMapper mapper, 
+    public RestaurantService(IUnitOfWork unitOfWork, IMapper mapper,
         ILogger<RestaurantService> logger, IAuthorizationService authorizationService,
         IUserContextService userContextService)
     {
@@ -45,7 +46,7 @@ public class RestaurantService : IRestaurantService
         _logger.LogTrace($"GET restaurant id: {id} action invoked.");
 
         var restaurant = await _unitOfWork.RestaurantRepository
-            .GetAsync(d => d.Id == id, includeProperties: "Address,Dishes");
+            .GetAsync(d => d.Id == id, "Address,Dishes");
 
         if (restaurant is null)
         {
@@ -89,7 +90,8 @@ public class RestaurantService : IRestaurantService
 
         if (!authorizationResult.Succeeded)
         {
-            _logger.LogError($"ACTION: UPDATE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {updateRestaurant.Id}.");
+            _logger.LogError(
+                $"ACTION: UPDATE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {updateRestaurant.Id}.");
             throw new ForbidException("You aren't a manager of this restaurant.");
         }
 
@@ -117,7 +119,8 @@ public class RestaurantService : IRestaurantService
 
         if (!authorizationResult.Succeeded)
         {
-            _logger.LogError($"ACTION: DELETE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {deleteRestaurant.Id}.");
+            _logger.LogError(
+                $"ACTION: DELETE, User id: {_userContextService.GetUserId} isn't a manager of restaurant id: {deleteRestaurant.Id}.");
             throw new ForbidException("You aren't a manager of this restaurant.");
         }
 

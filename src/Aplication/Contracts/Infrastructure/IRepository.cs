@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 
 namespace Application.Contracts.Infrastructure;
+
 public interface IRepository<T> where T : class
 {
     Task<IReadOnlyList<T>> GetAllAsync(

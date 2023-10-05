@@ -18,7 +18,7 @@ public class MappingProfile : Profile
         CreateMap<NewRestaurantDto, Restaurant>()
             .ForMember(r => r.Address,
                 x => x.MapFrom(d => new Address
-                    {City = d.City, Street = d.Street, PostalCode = d.PostalCode}));
+                    { City = d.City, Street = d.Street, PostalCode = d.PostalCode }));
 
         CreateMap<UpdateRestaurantDto, Restaurant>();
 
@@ -34,4 +34,3 @@ public class MappingProfile : Profile
         CreateMap<LoginDto, User>();
     }
 }
-

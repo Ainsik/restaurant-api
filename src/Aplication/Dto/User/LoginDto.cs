@@ -1,4 +1,5 @@
 ﻿namespace Application.Dto.User;
+
 public class LoginDto
 {
     public string Email { get; set; }

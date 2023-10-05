@@ -13,13 +13,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Application.Services;
+
 public class UserService : IUserService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ILogger<UserService> _logger;
-    private readonly IPasswordHasher<User> _passwordHasher;
     private readonly AuthenticationSettings _authenticationSettings;
+    private readonly ILogger<UserService> _logger;
+    private readonly IMapper _mapper;
+    private readonly IPasswordHasher<User> _passwordHasher;
+    private readonly IUnitOfWork _unitOfWork;
 
     public UserService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UserService> logger,
         IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings)
@@ -30,6 +31,7 @@ public class UserService : IUserService
         _passwordHasher = passwordHasher;
         _authenticationSettings = authenticationSettings;
     }
+
     public async Task Register(RegisterDto dto)
     {
         _logger.LogTrace("Register action invoked.");
@@ -47,7 +49,7 @@ public class UserService : IUserService
     {
         _logger.LogTrace("Login action invoked.");
 
-        var user = await _unitOfWork.UserRepository.GetAsync(u => u.Email == dto.Email, includeProperties: "Role");
+        var user = await _unitOfWork.UserRepository.GetAsync(u => u.Email == dto.Email, "Role");
 
         if (user is null)
         {
@@ -70,13 +72,13 @@ public class UserService : IUserService
 
     private string GenerateJwt(User user)
     {
-        var claims = new List<Claim>()
+        var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-            new Claim(ClaimTypes.Role, user.Role.Name),
-            new Claim("DateOfBirth", user.DateOfBirth?.ToString("dd/MM/yyyy") ?? string.Empty),
-            new Claim("Nationality", user.Nationality)
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new(ClaimTypes.Role, user.Role.Name),
+            new("DateOfBirth", user.DateOfBirth?.ToString("dd/MM/yyyy") ?? string.Empty),
+            new("Nationality", user.Nationality)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

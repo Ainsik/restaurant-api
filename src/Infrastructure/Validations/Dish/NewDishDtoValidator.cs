@@ -2,6 +2,7 @@
 using FluentValidation;
 
 namespace Infrastructure.Validations.Dish;
+
 public class NewDishDtoValidator : AbstractValidator<NewDishDto>
 {
     public NewDishDtoValidator()
@@ -16,6 +17,6 @@ public class NewDishDtoValidator : AbstractValidator<NewDishDto>
 
         RuleFor(d => d.Price)
             .NotEmpty().WithMessage("Dish price is required.")
-            .PrecisionScale(6,2, true);
+            .PrecisionScale(6, 2, true);
     }
 }

@@ -1,6 +1,6 @@
-﻿using Application.Contracts.Infrastructure;
+﻿using System.Linq.Expressions;
+using Application.Contracts.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
@@ -22,23 +22,15 @@ public abstract class Repository<T> : IRepository<T> where T : class
     {
         IQueryable<T> query = DbSet;
 
-        if (filter is not null)
-        {
-            query = query.Where(filter);
-        }
+        if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))
-        {
             query = includeProperties
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Aggregate(query, (current, includeProperty) =>
                     current.Include(includeProperty));
-        }
 
-        if (orderBy is not null)
-        {
-            query = orderBy(query);
-        }
+        if (orderBy is not null) query = orderBy(query);
 
         return await query.AsNoTracking().ToListAsync();
     }
@@ -54,18 +46,13 @@ public abstract class Repository<T> : IRepository<T> where T : class
     {
         IQueryable<T> query = DbSet;
 
-        if (filter is not null)
-        {
-            query = query.Where(filter);
-        }
+        if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))
-        {
             query = includeProperties
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Aggregate(query, (current, includeProperty) =>
                     current.Include(includeProperty));
-        }
 
         return await query.FirstOrDefaultAsync();
     }

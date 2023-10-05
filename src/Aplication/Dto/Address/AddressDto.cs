@@ -1,4 +1,5 @@
 ﻿namespace Application.Dto.Address;
+
 public class AddressDto
 {
     public int Id { get; set; }

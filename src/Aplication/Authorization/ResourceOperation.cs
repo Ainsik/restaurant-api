@@ -1,4 +1,5 @@
 ﻿namespace Application.Authorization;
+
 public enum ResourceOperation
 {
     Create,

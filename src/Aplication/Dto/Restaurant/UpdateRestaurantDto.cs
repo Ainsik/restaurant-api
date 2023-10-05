@@ -1,4 +1,5 @@
 ﻿namespace Application.Dto.Restaurant;
+
 public class UpdateRestaurantDto
 {
     public string Name { get; set; }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Validations.User;
+
 public class UserConfiguration : IEntityTypeConfiguration<Core.Entities.User>
 {
     public void Configure(EntityTypeBuilder<Core.Entities.User> builder)

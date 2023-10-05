@@ -1,4 +1,5 @@
 ﻿namespace Application.Dto.Address;
+
 public class NewAddressDto
 {
     public string City { get; set; }

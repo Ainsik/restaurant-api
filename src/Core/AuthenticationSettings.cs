@@ -1,4 +1,5 @@
 ﻿namespace Core;
+
 public class AuthenticationSettings
 {
     public string JwtKey { get; set; }
