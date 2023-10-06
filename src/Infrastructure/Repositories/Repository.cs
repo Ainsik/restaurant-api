@@ -28,11 +28,8 @@ public abstract class Repository<T> : IRepository<T> where T : class
     {
         IQueryable<T> query = DbSet;
 
-        if (pageSize > 0 && pageNumber > 0)
-        {
-            var skipCount = (pageNumber - 1) * pageSize;
-            query = query.Skip(skipCount).Take(pageSize);
-        }
+        var skipCount = (pageNumber - 1) * pageSize;
+        query = query.Skip(skipCount).Take(pageSize);
 
         if (filter is not null) query = query.Where(filter);
 

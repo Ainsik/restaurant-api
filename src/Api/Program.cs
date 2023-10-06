@@ -7,6 +7,7 @@ using Application.Models.Dto.Address;
 using Application.Models.Dto.Dish;
 using Application.Models.Dto.Restaurant;
 using Application.Models.Dto.User;
+using Application.Models.Pagination;
 using Application.Profiles;
 using Application.Services;
 using Core;
@@ -18,6 +19,7 @@ using Infrastructure.Repositories;
 using Infrastructure.Seeder;
 using Infrastructure.Validations.Address;
 using Infrastructure.Validations.Dish;
+using Infrastructure.Validations.Pagination;
 using Infrastructure.Validations.Restaurant;
 using Infrastructure.Validations.User;
 using Microsoft.AspNetCore.Authorization;
@@ -112,6 +114,8 @@ builder.Services.AddScoped<IValidator<UpdateDishDto>, UpdateDishDtoValidator>();
 
 builder.Services.AddScoped<IValidator<RegisterDto>, RegisterDtoValidator>();
 builder.Services.AddScoped<IValidator<LoginDto>, LoginValidator>();
+
+builder.Services.AddScoped<IValidator<PaginationQuery>, PaginationQueryValidator>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
