@@ -3,6 +3,7 @@ using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Exceptions;
 using Application.Models.Dto.Restaurant;
+using Application.Models.Pagination;
 using AutoMapper;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -30,14 +31,15 @@ public class RestaurantService : IRestaurantService
         _userContextService = userContextService;
     }
 
-    public async Task<IEnumerable<RestaurantDto>> GetAllAsync(string? searchPhrase)
+    public async Task<IEnumerable<RestaurantDto>> GetAllAsync(RestaurantQuery query)
     {
         _logger.LogTrace("GET ALL restaurants action invoked.");
 
         var restaurants = await _unitOfWork.RestaurantRepository
-            .GetAllAsync(r => searchPhrase == null || 
-                              (r.Name.ToLower().Contains(searchPhrase.ToLower()) 
-                               || r.Description.ToLower().Contains(searchPhrase.ToLower())),
+            .GetAllAsync(query.PageSize, query.PageNumber,
+                r => query.SearchPhrase == null || 
+                              r.Name.ToLower().Contains(query.SearchPhrase.ToLower()) || 
+                              r.Description.ToLower().Contains(query.SearchPhrase.ToLower()),
                 includeProperties: "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
