@@ -31,7 +31,7 @@ public class RestaurantService : IRestaurantService
         _userContextService = userContextService;
     }
 
-    public async Task<PageResult<RestaurantDto>> GetAllAsync(RestaurantQuery query)
+    public async Task<PageResult<RestaurantDto>> GetAllAsync(PaginationQuery query)
     {
         _logger.LogTrace("GET ALL restaurants action invoked.");
 

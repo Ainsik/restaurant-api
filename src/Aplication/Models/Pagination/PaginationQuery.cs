@@ -1,5 +1,5 @@
 ﻿namespace Application.Models.Pagination;
-public class RestaurantQuery
+public class PaginationQuery
 {
     public string? SearchPhrase { get; set; }
     public int PageNumber { get; set; }
