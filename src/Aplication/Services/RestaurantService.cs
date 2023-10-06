@@ -1,4 +1,5 @@
-﻿using Application.Authorization;
+﻿using System.Linq.Expressions;
+using Application.Authorization;
 using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
 using Application.Exceptions;
@@ -42,6 +43,7 @@ public class RestaurantService : IRestaurantService
                 r => query.SearchPhrase == null || 
                               r.Name.ToLower().Contains(query.SearchPhrase.ToLower()) || 
                               r.Description.ToLower().Contains(query.SearchPhrase.ToLower()),
+                Order(query),
                 includeProperties: "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
@@ -49,6 +51,24 @@ public class RestaurantService : IRestaurantService
         var pageResult = new PageResult<RestaurantDto>(restaurantsDto, totalItemsCount, query.PageSize, query.PageNumber);
 
         return pageResult;
+    }
+
+    private static Func<IQueryable<Restaurant>, IOrderedQueryable<Restaurant>> Order(PaginationQuery query)
+    {
+        if (string.IsNullOrEmpty(query.SortBy)) return null!;
+        var selector = new Dictionary<string, Expression<Func<Restaurant, object>>>
+        {
+            {nameof(Restaurant.Name), r => r.Name},
+            {nameof(Restaurant.Description), r => r.Description},
+            {nameof(Restaurant.Category), r => r.Category}
+        };
+
+        var selectedColumn = selector[query.SortBy];
+
+        return o => query.SortDirection == SortDirection.ASC
+            ? o.OrderBy(selectedColumn)
+            : o.OrderByDescending(selectedColumn);
+
     }
 
     public async Task<RestaurantDto> GetByIdAsync(int id)

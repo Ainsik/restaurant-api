@@ -4,7 +4,13 @@ using FluentValidation;
 namespace Infrastructure.Validations.Pagination;
 public class PaginationQueryValidator :AbstractValidator<PaginationQuery>
 {
-    private readonly int[] _allowedPageSize = new[] {5, 10, 15};
+    private readonly int[] _allowedPageSize = {5, 10, 15};
+
+    private readonly string[] _allowedSortByColumn =
+    {
+        nameof(Core.Entities.Restaurant.Name), nameof(Core.Entities.Restaurant.Description),
+        nameof(Core.Entities.Restaurant.Category)
+    };
     public PaginationQueryValidator()
     {
         RuleFor(p => p.SearchPhrase)
@@ -20,5 +26,9 @@ public class PaginationQueryValidator :AbstractValidator<PaginationQuery>
                 context.AddFailure("PageSize", $"Page size must be included in [{string.Join(",", _allowedPageSize)}].");
             }
         });
+
+        RuleFor(p => p.SortBy)
+            .Must(value => string.IsNullOrEmpty(value) || _allowedSortByColumn.Contains(value))
+            .WithMessage($"Sort by is optional or must be in [{string.Join(",", _allowedSortByColumn)}].");
     }
 }
