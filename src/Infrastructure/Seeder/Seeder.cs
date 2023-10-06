@@ -85,8 +85,168 @@ public class Seeder
                     "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
                 Category = "Fast Food",
                 HasDelivery = true,
-                ContactEmail = "contact@mcdonald.com",
-                ContactNumber = "321321321",
+                ContactEmail = "contact1@mcdonald.com",
+                ContactNumber = "321321322",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact2@mcdonald.com",
+                ContactNumber = "321321331",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contat@mcdonald.com",
+                ContactNumber = "311321321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "conta7ct@mcdonald.com",
+                ContactNumber = "321721321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac4t@mcdonald.com",
+                ContactNumber = "321341321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac12t@mcdonald.com",
+                ContactNumber = "320321321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac5t@mcdonald.com",
+                ContactNumber = "321381321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact0@mcdonald.com",
+                ContactNumber = "321321301",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact00@mcdonald.com",
+                ContactNumber = "321320021",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac68t@mcdonald.com",
+                ContactNumber = "321321328",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "con5tact@mcdonald.com",
+                ContactNumber = "325321321",
                 Address = new Address
                 {
                     City = "Kraków",
