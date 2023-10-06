@@ -19,9 +19,9 @@ public class RestaurantController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurantsAsync()
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurantsAsync([FromQuery] string? searchPhrase)
     {
-        var restaurants = await _restaurantService.GetAllAsync();
+        var restaurants = await _restaurantService.GetAllAsync(searchPhrase);
 
         return Ok(restaurants);
     }

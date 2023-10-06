@@ -6,6 +6,7 @@ using Application.Exceptions;
 using AutoMapper;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
@@ -29,12 +30,15 @@ public class RestaurantService : IRestaurantService
         _userContextService = userContextService;
     }
 
-    public async Task<IEnumerable<RestaurantDto>> GetAllAsync()
+    public async Task<IEnumerable<RestaurantDto>> GetAllAsync(string? searchPhrase)
     {
         _logger.LogTrace("GET ALL restaurants action invoked.");
 
         var restaurants = await _unitOfWork.RestaurantRepository
-            .GetAllAsync(includeProperties: "Address,Dishes");
+            .GetAllAsync(r => searchPhrase == null || 
+                              (r.Name.ToLower().Contains(searchPhrase.ToLower()) 
+                               || r.Description.ToLower().Contains(searchPhrase.ToLower())),
+                includeProperties: "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
