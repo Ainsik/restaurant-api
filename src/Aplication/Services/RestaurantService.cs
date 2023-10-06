@@ -8,7 +8,6 @@ using Application.Models.Pagination;
 using AutoMapper;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
@@ -40,35 +39,18 @@ public class RestaurantService : IRestaurantService
 
         var restaurants = await _unitOfWork.RestaurantRepository
             .GetAllAsync(query.PageSize, query.PageNumber,
-                r => query.SearchPhrase == null || 
-                              r.Name.ToLower().Contains(query.SearchPhrase.ToLower()) || 
-                              r.Description.ToLower().Contains(query.SearchPhrase.ToLower()),
+                r => query.SearchPhrase == null ||
+                     r.Name.ToLower().Contains(query.SearchPhrase.ToLower()) ||
+                     r.Description.ToLower().Contains(query.SearchPhrase.ToLower()),
                 Order(query),
-                includeProperties: "Address,Dishes");
+                "Address,Dishes");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
-        var pageResult = new PageResult<RestaurantDto>(restaurantsDto, totalItemsCount, query.PageSize, query.PageNumber);
+        var pageResult =
+            new PageResult<RestaurantDto>(restaurantsDto, totalItemsCount, query.PageSize, query.PageNumber);
 
         return pageResult;
-    }
-
-    private static Func<IQueryable<Restaurant>, IOrderedQueryable<Restaurant>> Order(PaginationQuery query)
-    {
-        if (string.IsNullOrEmpty(query.SortBy)) return null!;
-        var selector = new Dictionary<string, Expression<Func<Restaurant, object>>>
-        {
-            {nameof(Restaurant.Name), r => r.Name},
-            {nameof(Restaurant.Description), r => r.Description},
-            {nameof(Restaurant.Category), r => r.Category}
-        };
-
-        var selectedColumn = selector[query.SortBy];
-
-        return o => query.SortDirection == SortDirection.ASC
-            ? o.OrderBy(selectedColumn)
-            : o.OrderByDescending(selectedColumn);
-
     }
 
     public async Task<RestaurantDto> GetByIdAsync(int id)
@@ -158,5 +140,22 @@ public class RestaurantService : IRestaurantService
         await _unitOfWork.SaveAsync();
 
         _logger.LogTrace($"Restaurant id: {deleteRestaurant.Id} deleted by user id: {_userContextService.GetUserId}.");
+    }
+
+    private static Func<IQueryable<Restaurant>, IOrderedQueryable<Restaurant>> Order(PaginationQuery query)
+    {
+        if (string.IsNullOrEmpty(query.SortBy)) return null!;
+        var selector = new Dictionary<string, Expression<Func<Restaurant, object>>>
+        {
+            { nameof(Restaurant.Name), r => r.Name },
+            { nameof(Restaurant.Description), r => r.Description },
+            { nameof(Restaurant.Category), r => r.Category }
+        };
+
+        var selectedColumn = selector[query.SortBy];
+
+        return o => query.SortDirection == SortDirection.ASC
+            ? o.OrderBy(selectedColumn)
+            : o.OrderByDescending(selectedColumn);
     }
 }

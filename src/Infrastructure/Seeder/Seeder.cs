@@ -94,7 +94,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -110,7 +111,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -126,7 +128,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -142,7 +145,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -158,7 +162,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -174,7 +179,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -190,7 +196,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -206,7 +213,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -222,7 +230,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -238,7 +247,8 @@ public class Seeder
                     PostalCode = "30-001"
                 },
                 CreatedById = 2
-            },            new()
+            },
+            new()
             {
                 Name = "McDonald Szewska",
                 Description =
@@ -284,28 +294,31 @@ public class Seeder
     {
         var users = new List<User>
         {
-            new ()
+            new()
             {
                 Email = "admin@gmail.com",
                 FirstName = "Admin",
                 LastName = "Admin",
-                PasswordHash = "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==", // Admin01!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==", // Admin01!
                 RoleId = 3
             },
-            new ()
+            new()
             {
                 Email = "manager@gmail.com",
                 FirstName = "Manager",
                 LastName = "Manager",
-                PasswordHash = "AQAAAAEAACcQAAAAEL1e8K19IqLWTvStxzflYU5LjYjQRXW/DwjbGdsQA0n2sgu9NcZWcWwKeDvOVb4Q5Q==", // Manager1!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAEL1e8K19IqLWTvStxzflYU5LjYjQRXW/DwjbGdsQA0n2sgu9NcZWcWwKeDvOVb4Q5Q==", // Manager1!
                 RoleId = 2
             },
-            new ()
+            new()
             {
                 Email = "user@gmail.com",
                 FirstName = "User",
                 LastName = "User",
-                PasswordHash = "AQAAAAEAACcQAAAAELvo4KMDKWD9WU6YPeZv71KM2WV/jJdc0nOvV9yqdzUmLHkS3efgsrvglFfmQlH/zg==", // User012!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAELvo4KMDKWD9WU6YPeZv71KM2WV/jJdc0nOvV9yqdzUmLHkS3efgsrvglFfmQlH/zg==", // User012!
                 RoleId = 1
             }
         };

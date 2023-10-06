@@ -2,15 +2,17 @@
 using FluentValidation;
 
 namespace Infrastructure.Validations.Pagination;
-public class PaginationQueryValidator :AbstractValidator<PaginationQuery>
+
+public class PaginationQueryValidator : AbstractValidator<PaginationQuery>
 {
-    private readonly int[] _allowedPageSize = {5, 10, 15};
+    private readonly int[] _allowedPageSize = { 5, 10, 15 };
 
     private readonly string[] _allowedSortByColumn =
     {
         nameof(Core.Entities.Restaurant.Name), nameof(Core.Entities.Restaurant.Description),
         nameof(Core.Entities.Restaurant.Category)
     };
+
     public PaginationQueryValidator()
     {
         RuleFor(p => p.SearchPhrase)
@@ -22,9 +24,8 @@ public class PaginationQueryValidator :AbstractValidator<PaginationQuery>
         RuleFor(p => p.PageSize).Custom((value, context) =>
         {
             if (!_allowedPageSize.Contains(value))
-            {
-                context.AddFailure("PageSize", $"Page size must be included in [{string.Join(",", _allowedPageSize)}].");
-            }
+                context.AddFailure("PageSize",
+                    $"Page size must be included in [{string.Join(",", _allowedPageSize)}].");
         });
 
         RuleFor(p => p.SortBy)

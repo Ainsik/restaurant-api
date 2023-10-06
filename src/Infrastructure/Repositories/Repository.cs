@@ -27,7 +27,7 @@ public abstract class Repository<T> : IRepository<T> where T : class
         string? includeProperties = null)
     {
         IQueryable<T> query = DbSet;
-        
+
         if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))

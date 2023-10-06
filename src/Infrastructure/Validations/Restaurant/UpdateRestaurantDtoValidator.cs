@@ -1,6 +1,5 @@
 ﻿using Application.Models.Dto.Restaurant;
 using FluentValidation;
-using Infrastructure.DbContext;
 
 namespace Infrastructure.Validations.Restaurant;
 

@@ -1,4 +1,5 @@
 ﻿namespace Application.Models.Pagination;
+
 public class PaginationQuery
 {
     public string? SearchPhrase { get; set; }
