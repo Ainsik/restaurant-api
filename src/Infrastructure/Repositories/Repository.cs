@@ -23,10 +23,13 @@ public abstract class Repository<T> : IRepository<T> where T : class
     {
         IQueryable<T> query = DbSet;
 
-        query = query.Skip(pageSize * (pageNumber - 1));
-        query = query.Take(pageSize);
+        if (pageSize > 0 && pageNumber > 0)
+        {
+            var skipCount = (pageNumber - 1) * pageSize;
+            query = query.Skip(skipCount).Take(pageSize);
+        }
 
-            if (filter is not null) query = query.Where(filter);
+        if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))
             query = includeProperties
