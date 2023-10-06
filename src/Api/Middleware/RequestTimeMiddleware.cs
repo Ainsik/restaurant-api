@@ -21,11 +21,9 @@ public class RequestTimeMiddleware : IMiddleware
 
         var elapsedMilliseconds = _stopWatch.ElapsedMilliseconds;
 
-        if (elapsedMilliseconds / 1000 > 4)
-        {
-            var message =
-                $"Request [{context.Request.Method}] at {context.Request.Path} took {elapsedMilliseconds} ms.";
-            _logger.LogInformation(message);
-        }
+        var message =
+            $"Request [{context.Request.Method}] at {context.Request.Path} took {elapsedMilliseconds} ms.";
+
+        _logger.LogInformation(message);
     }
 }
