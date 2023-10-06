@@ -1,5 +1,5 @@
 ﻿using Application.Contracts.Application;
-using Application.Dto.Restaurant;
+using Application.Models.Dto.Restaurant;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

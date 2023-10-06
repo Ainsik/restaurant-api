@@ -1,5 +1,5 @@
 ﻿using Application.Contracts.Application;
-using Application.Dto.Dish;
+using Application.Models.Dto.Dish;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;

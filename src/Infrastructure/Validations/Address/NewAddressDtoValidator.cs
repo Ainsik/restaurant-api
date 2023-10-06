@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using Application.Dto.Address;
+using Application.Models.Dto.Address;
 using FluentValidation;
 
 namespace Infrastructure.Validations.Address;

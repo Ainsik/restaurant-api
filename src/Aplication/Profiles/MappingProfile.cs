@@ -1,6 +1,6 @@
-﻿using Application.Dto.Dish;
-using Application.Dto.Restaurant;
-using Application.Dto.User;
+﻿using Application.Models.Dto.Dish;
+using Application.Models.Dto.Restaurant;
+using Application.Models.Dto.User;
 using AutoMapper;
 using Core.Entities;
 

@@ -1,8 +1,8 @@
 ﻿using Application.Authorization;
 using Application.Contracts.Application;
 using Application.Contracts.Infrastructure;
-using Application.Dto.Restaurant;
 using Application.Exceptions;
+using Application.Models.Dto.Restaurant;
 using AutoMapper;
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;

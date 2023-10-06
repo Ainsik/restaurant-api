@@ -1,4 +1,4 @@
-﻿namespace Application.Dto.Dish;
+﻿namespace Application.Models.Dto.Dish;
 
 public class UpdateDishDto
 {

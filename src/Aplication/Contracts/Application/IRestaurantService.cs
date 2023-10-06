@@ -1,4 +1,4 @@
-﻿using Application.Dto.Restaurant;
+﻿using Application.Models.Dto.Restaurant;
 
 namespace Application.Contracts.Application;
 

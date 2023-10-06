@@ -1,6 +1,6 @@
-﻿using Application.Dto.Dish;
+﻿using Application.Models.Dto.Dish;
 
-namespace Application.Dto.Restaurant;
+namespace Application.Models.Dto.Restaurant;
 
 public class RestaurantDto
 {

@@ -1,4 +1,4 @@
-﻿namespace Application.Dto.User;
+﻿namespace Application.Models.Dto.User;
 
 public class LoginDto
 {

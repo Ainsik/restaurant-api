@@ -1,4 +1,4 @@
-﻿using Application.Dto.Dish;
+﻿using Application.Models.Dto.Dish;
 using FluentValidation;
 
 namespace Infrastructure.Validations.Dish;
