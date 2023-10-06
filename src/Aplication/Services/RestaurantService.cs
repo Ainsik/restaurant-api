@@ -31,9 +31,11 @@ public class RestaurantService : IRestaurantService
         _userContextService = userContextService;
     }
 
-    public async Task<IEnumerable<RestaurantDto>> GetAllAsync(RestaurantQuery query)
+    public async Task<PageResult<RestaurantDto>> GetAllAsync(RestaurantQuery query)
     {
         _logger.LogTrace("GET ALL restaurants action invoked.");
+
+        var totalItemsCount = await _unitOfWork.RestaurantRepository.Count();
 
         var restaurants = await _unitOfWork.RestaurantRepository
             .GetAllAsync(query.PageSize, query.PageNumber,
@@ -44,7 +46,9 @@ public class RestaurantService : IRestaurantService
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
-        return restaurantsDto;
+        var pageResult = new PageResult<RestaurantDto>(restaurantsDto, totalItemsCount, query.PageSize, query.PageNumber);
+
+        return pageResult;
     }
 
     public async Task<RestaurantDto> GetByIdAsync(int id)

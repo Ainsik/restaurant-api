@@ -5,7 +5,7 @@ namespace Application.Contracts.Application;
 
 public interface IRestaurantService
 {
-    Task<IEnumerable<RestaurantDto>> GetAllAsync(RestaurantQuery query);
+    Task<PageResult<RestaurantDto>> GetAllAsync(RestaurantQuery query);
     Task<RestaurantDto> GetByIdAsync(int id);
     Task CreateAsync(NewRestaurantDto dto);
     Task UpdateAsync(int id, UpdateRestaurantDto dto);
