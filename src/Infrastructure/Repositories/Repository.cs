@@ -27,10 +27,7 @@ public abstract class Repository<T> : IRepository<T> where T : class
         string? includeProperties = null)
     {
         IQueryable<T> query = DbSet;
-
-        var skipCount = (pageNumber - 1) * pageSize;
-        query = query.Skip(skipCount).Take(pageSize);
-
+        
         if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))
@@ -40,6 +37,9 @@ public abstract class Repository<T> : IRepository<T> where T : class
                     current.Include(includeProperty));
 
         if (orderBy is not null) query = orderBy(query);
+
+        var skipCount = (pageNumber - 1) * pageSize;
+        query = query.Skip(skipCount).Take(pageSize);
 
         return await query.AsNoTracking().ToListAsync();
     }
