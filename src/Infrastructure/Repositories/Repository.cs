@@ -16,13 +16,17 @@ public abstract class Repository<T> : IRepository<T> where T : class
     }
 
     public async Task<IReadOnlyList<T>> GetAllAsync(
+        int pageSize, int pageNumber,
         Expression<Func<T, bool>>? filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
         string? includeProperties = null)
     {
         IQueryable<T> query = DbSet;
 
-        if (filter is not null) query = query.Where(filter);
+        query = query.Skip(pageSize * (pageNumber - 1));
+        query = query.Take(pageSize);
+
+            if (filter is not null) query = query.Where(filter);
 
         if (!string.IsNullOrWhiteSpace(includeProperties))
             query = includeProperties
