@@ -15,6 +15,11 @@ public abstract class Repository<T> : IRepository<T> where T : class
         DbSet = Context.Set<T>();
     }
 
+    public async Task<int> Count()
+    {
+        return await DbSet.CountAsync();
+    }
+
     public async Task<IReadOnlyList<T>> GetAllAsync(
         int pageSize, int pageNumber,
         Expression<Func<T, bool>>? filter = null,

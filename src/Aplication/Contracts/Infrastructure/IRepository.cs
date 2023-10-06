@@ -4,6 +4,8 @@ namespace Application.Contracts.Infrastructure;
 
 public interface IRepository<T> where T : class
 {
+    Task<int> Count();
+
     Task<IReadOnlyList<T>> GetAllAsync(
         int pageSize, int pageNumber,
         Expression<Func<T, bool>>? filter = null,
