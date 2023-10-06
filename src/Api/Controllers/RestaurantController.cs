@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Application;
-using Application.Dto.Restaurant;
+using Application.Models.Dto.Restaurant;
+using Application.Models.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +20,10 @@ public class RestaurantController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurantsAsync()
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAllRestaurantsAsync(
+        [FromQuery] PaginationQuery query)
     {
-        var restaurants = await _restaurantService.GetAllAsync();
+        var restaurants = await _restaurantService.GetAllAsync(query);
 
         return Ok(restaurants);
     }

@@ -1,4 +1,4 @@
-﻿using Application.Dto.User;
+﻿using Application.Models.Dto.User;
 
 namespace Application.Contracts.Application;
 

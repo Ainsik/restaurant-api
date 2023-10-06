@@ -1,4 +1,4 @@
-﻿namespace Application.Dto.Address;
+﻿namespace Application.Models.Dto.Address;
 
 public class AddressDto
 {

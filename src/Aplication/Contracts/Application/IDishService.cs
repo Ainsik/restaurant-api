@@ -1,4 +1,4 @@
-﻿using Application.Dto.Dish;
+﻿using Application.Models.Dto.Dish;
 
 namespace Application.Contracts.Application;
 

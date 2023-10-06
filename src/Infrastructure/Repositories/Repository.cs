@@ -15,7 +15,13 @@ public abstract class Repository<T> : IRepository<T> where T : class
         DbSet = Context.Set<T>();
     }
 
+    public async Task<int> Count()
+    {
+        return await DbSet.CountAsync();
+    }
+
     public async Task<IReadOnlyList<T>> GetAllAsync(
+        int pageSize, int pageNumber,
         Expression<Func<T, bool>>? filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
         string? includeProperties = null)
@@ -31,6 +37,9 @@ public abstract class Repository<T> : IRepository<T> where T : class
                     current.Include(includeProperty));
 
         if (orderBy is not null) query = orderBy(query);
+
+        var skipCount = (pageNumber - 1) * pageSize;
+        query = query.Skip(skipCount).Take(pageSize);
 
         return await query.AsNoTracking().ToListAsync();
     }

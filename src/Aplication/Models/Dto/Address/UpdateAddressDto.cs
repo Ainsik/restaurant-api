@@ -1,6 +1,6 @@
-﻿namespace Application.Dto.Address;
+﻿namespace Application.Models.Dto.Address;
 
-public class NewAddressDto
+public class UpdateAddressDto
 {
     public string City { get; set; }
     public string Street { get; set; }

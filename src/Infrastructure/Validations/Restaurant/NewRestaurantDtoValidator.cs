@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using Application.Dto.Restaurant;
+using Application.Models.Dto.Restaurant;
 using FluentValidation;
 using Infrastructure.DbContext;
 

@@ -1,4 +1,4 @@
-﻿namespace Application.Dto.Restaurant;
+﻿namespace Application.Models.Dto.Restaurant;
 
 public class UpdateRestaurantDto
 {

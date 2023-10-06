@@ -85,8 +85,178 @@ public class Seeder
                     "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
                 Category = "Fast Food",
                 HasDelivery = true,
-                ContactEmail = "contact@mcdonald.com",
-                ContactNumber = "321321321",
+                ContactEmail = "contact1@mcdonald.com",
+                ContactNumber = "321321322",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact2@mcdonald.com",
+                ContactNumber = "321321331",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contat@mcdonald.com",
+                ContactNumber = "311321321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "conta7ct@mcdonald.com",
+                ContactNumber = "321721321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac4t@mcdonald.com",
+                ContactNumber = "321341321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac12t@mcdonald.com",
+                ContactNumber = "320321321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac5t@mcdonald.com",
+                ContactNumber = "321381321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact0@mcdonald.com",
+                ContactNumber = "321321301",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact00@mcdonald.com",
+                ContactNumber = "321320021",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contac68t@mcdonald.com",
+                ContactNumber = "321321328",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Szewska 2",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "McDonald Szewska",
+                Description =
+                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "con5tact@mcdonald.com",
+                ContactNumber = "325321321",
                 Address = new Address
                 {
                     City = "Kraków",
@@ -124,28 +294,31 @@ public class Seeder
     {
         var users = new List<User>
         {
-            new ()
+            new()
             {
                 Email = "admin@gmail.com",
                 FirstName = "Admin",
                 LastName = "Admin",
-                PasswordHash = "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==", // Admin01!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAEPuCnIw7Bt+Gu/5v8qb4c7bv8YwdSF+G1TT+XJE9ItfXL3QsmFQvzUJ2Gs54EWXzaQ==", // Admin01!
                 RoleId = 3
             },
-            new ()
+            new()
             {
                 Email = "manager@gmail.com",
                 FirstName = "Manager",
                 LastName = "Manager",
-                PasswordHash = "AQAAAAEAACcQAAAAEL1e8K19IqLWTvStxzflYU5LjYjQRXW/DwjbGdsQA0n2sgu9NcZWcWwKeDvOVb4Q5Q==", // Manager1!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAEL1e8K19IqLWTvStxzflYU5LjYjQRXW/DwjbGdsQA0n2sgu9NcZWcWwKeDvOVb4Q5Q==", // Manager1!
                 RoleId = 2
             },
-            new ()
+            new()
             {
                 Email = "user@gmail.com",
                 FirstName = "User",
                 LastName = "User",
-                PasswordHash = "AQAAAAEAACcQAAAAELvo4KMDKWD9WU6YPeZv71KM2WV/jJdc0nOvV9yqdzUmLHkS3efgsrvglFfmQlH/zg==", // User012!
+                PasswordHash =
+                    "AQAAAAEAACcQAAAAELvo4KMDKWD9WU6YPeZv71KM2WV/jJdc0nOvV9yqdzUmLHkS3efgsrvglFfmQlH/zg==", // User012!
                 RoleId = 1
             }
         };

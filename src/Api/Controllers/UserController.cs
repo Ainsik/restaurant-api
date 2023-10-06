@@ -1,5 +1,5 @@
 ﻿using Application.Contracts.Application;
-using Application.Dto.User;
+using Application.Models.Dto.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
