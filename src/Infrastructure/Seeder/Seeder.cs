@@ -97,13 +97,79 @@ public class Seeder
             },
             new()
             {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                Name = "Burger King Kraków",
+                Description = "Burger King is a place where everyone can find something they love.",
                 Category = "Fast Food",
                 HasDelivery = true,
-                ContactEmail = "contact2@mcdonald.com",
-                ContactNumber = "321321331",
+                ContactEmail = "contact@burgerking.com",
+                ContactNumber = "987654321",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Main Street 123",
+                    PostalCode = "30-002"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "Pizza Hut",
+                Description = "Enjoy delicious pizzas at Pizza Hut.",
+                Category = "Pizza",
+                HasDelivery = true,
+                ContactEmail = "contact@pizzahut.com",
+                ContactNumber = "555555555",
+                Address = new Address
+                {
+                    City = "New York",
+                    Street = "Broadway 1",
+                    PostalCode = "10-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "Subway",
+                Description =
+                    "Subway offers fresh sandwiches and salads for every taste.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact@subway.com",
+                ContactNumber = "111222333",
+                Address = new Address
+                {
+                    City = "Kraków",
+                    Street = "Długa 8",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "Dunkin' Donuts",
+                Description =
+                    "Dunkin' Donuts is a place where you can find tasty donuts and coffee.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact@dunkindonuts.com",
+                ContactNumber = "999888777",
+                Address = new Address
+                {
+                    City = "Warszawa",
+                    Street = "Lebelska 7",
+                    PostalCode = "30-001"
+                },
+                CreatedById = 2
+            },
+            new()
+            {
+                Name = "Taco Bell",
+                Description =
+                    "Taco Bell is a place where you can try Mexican delicacies.",
+                Category = "Fast Food",
+                HasDelivery = true,
+                ContactEmail = "contact@tacobell.com",
+                ContactNumber = "777888999",
                 Address = new Address
                 {
                     City = "Kraków",
@@ -114,13 +180,13 @@ public class Seeder
             },
             new()
             {
-                Name = "McDonald Szewska",
+                Name = "Bobby's Burgers",
                 Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
+                    "Bobby's Burgers is a place where you can try original burgers.",
                 Category = "Fast Food",
                 HasDelivery = true,
-                ContactEmail = "contat@mcdonald.com",
-                ContactNumber = "311321321",
+                ContactEmail = "contact@bobbysburgers.com",
+                ContactNumber = "333222111",
                 Address = new Address
                 {
                     City = "Kraków",
@@ -131,132 +197,13 @@ public class Seeder
             },
             new()
             {
-                Name = "McDonald Szewska",
+                Name = "Panda Express",
                 Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
+                    "Panda Express offers Chinese fusion dishes.",
+                Category = "Fusion",
                 HasDelivery = true,
-                ContactEmail = "conta7ct@mcdonald.com",
-                ContactNumber = "321721321",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contac4t@mcdonald.com",
-                ContactNumber = "321341321",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contac12t@mcdonald.com",
-                ContactNumber = "320321321",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contac5t@mcdonald.com",
-                ContactNumber = "321381321",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contact0@mcdonald.com",
-                ContactNumber = "321321301",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contact00@mcdonald.com",
-                ContactNumber = "321320021",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "contac68t@mcdonald.com",
-                ContactNumber = "321321328",
-                Address = new Address
-                {
-                    City = "Kraków",
-                    Street = "Szewska 2",
-                    PostalCode = "30-001"
-                },
-                CreatedById = 2
-            },
-            new()
-            {
-                Name = "McDonald Szewska",
-                Description =
-                    "McDonald's Corporation (McDonald's), incorporated on December 21, 1964, operates and franchises McDonald's restaurants.",
-                Category = "Fast Food",
-                HasDelivery = true,
-                ContactEmail = "con5tact@mcdonald.com",
-                ContactNumber = "325321321",
+                ContactEmail = "contact@pandaexpress.com",
+                ContactNumber = "666555444",
                 Address = new Address
                 {
                     City = "Kraków",
