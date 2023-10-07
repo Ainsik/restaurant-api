@@ -173,3 +173,5 @@ policy.Execute(() =>
 });
 
 app.Run();
+
+public partial class Program { }
