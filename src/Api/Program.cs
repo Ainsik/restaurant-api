@@ -143,10 +143,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseResponseCaching();
-
-app.UseStaticFiles();
-
 app.UseCors();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
