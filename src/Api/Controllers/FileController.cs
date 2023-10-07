@@ -28,4 +28,18 @@ public class FileController : ControllerBase
 
         return File(fileContents, contentType, fileName);
     }
+
+    [HttpPost]
+    public async Task<ActionResult> Upload([FromForm] IFormFile file)
+    {
+        if (file.Length <= 0) return BadRequest();
+
+        var rootPath = Directory.GetCurrentDirectory();
+        var filePath = $"{rootPath}/PrivateFiles/{file.FileName}";
+
+        await using var stream = new FileStream(filePath, FileMode.Create);
+        await file.CopyToAsync(stream);
+
+        return Ok();
+    }
 }
