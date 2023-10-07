@@ -31,7 +31,7 @@ using NLog.Web;
 using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
-//test continuous integration
+
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
 
