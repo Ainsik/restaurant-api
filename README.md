@@ -1,17 +1,3 @@
-# To Do
-
-## Backedn
-- testy
-- CI/CD
-- refaktor restaurant controller
-- seeder sprawdzic refaktor
-
-## Frontend
-- 
--
--
-
-
 ---
 # Restaurant API with C# and Vue.js
 
