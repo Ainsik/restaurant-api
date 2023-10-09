@@ -4,7 +4,7 @@
 			<form @submit.prevent="login" class="w-50 mx-auto">
 				<h2 class="mb-4">Login</h2>
 				<div class="mb-3">
-					<label for="email" class="form-label">Email</label>
+					<label for="email" class="form-label">E-mail</label>
 					<input
 						type="text"
 						class="form-control"
@@ -23,7 +23,7 @@
 						required
 					/>
 				</div>
-				<button type="submit" class="btn btn-primary">Zaloguj się</button>
+				<button type="submit" class="btn btn-primary">Login</button>
 			</form>
 		</div>
 	</section>
@@ -49,7 +49,6 @@ export default {
 				.then((response) => {
 					const token = response.data;
 					this.$store.dispatch("setToken", token);
-					console.log(token);
 				})
 				.catch((error) => {
 					console.error("Login error", error);

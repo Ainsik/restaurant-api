@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import DefaultLayout from "../components/DefaultLayout.vue";
-import MainPage from "../pages/MainPage.vue";
-import AllRestaurants from "../pages/AllRestaurants.vue";
-import SingleRestaurant from "../pages/SingleRestaurant.vue";
-import AllDishes from "../pages/AllDishes.vue";
-import SingleDish from "../pages/SingleDish.vue";
-import LoginPage from "../pages/LoginPage.vue";
-import RegistrationPage from "../pages/RegistrationPage.vue";
+import DefaultLayout from "./components/DefaultLayout.vue";
+import MainPage from "./pages/MainPage.vue";
+import AllRestaurants from "./pages/AllRestaurants.vue";
+import SingleRestaurant from "./pages/SingleRestaurant.vue";
+import AllDishes from "./pages/AllDishes.vue";
+import SingleDish from "./pages/SingleDish.vue";
+import LoginPage from "./pages/LoginPage.vue";
+import RegistrationPage from "./pages/RegistrationPage.vue";
 
 const routes = [
 	{
@@ -29,7 +29,7 @@ const routes = [
 				component: SingleRestaurant,
 			},
 			{
-				path: "/restaurant/:restaurantId?/dish",
+				path: "/restaurant/:restaurantId?/dishes",
 				name: "dishes",
 				component: AllDishes,
 			},
