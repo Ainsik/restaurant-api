@@ -1,5 +1,5 @@
 <template>
 	<section>
-		<div>Login</div>
+		<div>RegistrationPage</div>
 	</section>
 </template>

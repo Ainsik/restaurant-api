@@ -4,11 +4,10 @@
 			<h2>CURRENT ID: {{ restaurantId }}</h2>
 			<input type="text" v-model="restaurantId" />
 			<button @click="getRestaurant">getRestaurant</button>
-			<p v-if="isValid">
+			<p>
 				ID: {{ restaurant.id }} <br />
 				Name: {{ restaurant.name }}
 			</p>
-			<p v-else>Invalid id!</p>
 		</div>
 	</section>
 </template>
@@ -25,15 +24,22 @@ export default {
 	},
 	methods: {
 		async getRestaurant() {
-			this.isValid = true;
-			try {
-				await axios.get(`${API}/${this.restaurantId}`).then((result) => {
+			const token = this.$store.getters.getToken;
+
+			await axios
+				.get(`${API}/${this.restaurantId}`, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+				.then((result) => {
 					const { data } = result;
 					this.restaurant = data;
+				})
+				.catch((error) => {
+					console.error("Błąd żądania GET", error.response);
 				});
-			} catch (error) {
-				this.isValid = false;
-			}
+
 			this.restaurantId = null;
 		},
 	},

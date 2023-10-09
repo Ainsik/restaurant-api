@@ -5,7 +5,8 @@ import AllRestaurants from "../pages/AllRestaurants.vue";
 import SingleRestaurant from "../pages/SingleRestaurant.vue";
 import AllDishes from "../pages/AllDishes.vue";
 import SingleDish from "../pages/SingleDish.vue";
-import UserAccount from "../pages/UserAccount.vue";
+import LoginPage from "../pages/LoginPage.vue";
+import RegistrationPage from "../pages/RegistrationPage.vue";
 
 const routes = [
 	{
@@ -38,9 +39,14 @@ const routes = [
 				component: SingleDish,
 			},
 			{
-				path: "/user",
-				name: "user",
-				component: UserAccount,
+				path: "/login",
+				name: "login",
+				component: LoginPage,
+			},
+			{
+				path: "/registration",
+				name: "registration",
+				component: RegistrationPage,
 			},
 		],
 	},
