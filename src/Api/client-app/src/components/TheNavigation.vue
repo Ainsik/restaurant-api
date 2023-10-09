@@ -18,7 +18,10 @@
 				<div class="navbar-nav ms-auto gap-3">
 					<router-link :to="{ name: 'restaurants' }"> Restaurants </router-link>
 					<router-link :to="{ name: 'dishes' }"> Dishes </router-link>
-					<router-link :to="{ name: 'login' }"> Login </router-link>
+					<router-link v-if="!token" to="/login">Login</router-link>
+					<button class="logout" v-if="token" @click="logout">
+						<i class="bi bi-box-arrow-right"></i> Logout
+					</button>
 				</div>
 			</div>
 		</div>
@@ -27,6 +30,11 @@
 
 <script>
 export default {
+	computed: {
+		token() {
+			return this.$store.getters.getToken;
+		},
+	},
 	methods: {
 		toggleNavbar() {
 			const nav = document.querySelector(".navbar-collapse");
@@ -35,6 +43,10 @@ export default {
 					nav.classList.remove("show");
 				}
 			});
+		},
+		logout() {
+			this.$store.commit("clearToken");
+			this.$router.push("/login");
 		},
 	},
 };
@@ -51,5 +63,11 @@ export default {
 	padding: 1em 2em;
 	color: var(--color-heading-h1);
 	border-color: var(--color-heading-h1);
+}
+
+.logout {
+	background-color: transparent;
+	color: white;
+	border: none;
 }
 </style>
