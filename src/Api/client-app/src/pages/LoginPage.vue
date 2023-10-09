@@ -1,9 +1,9 @@
 <template>
 	<section>
 		<div class="container mt-5">
-			<form @submit.prevent="login" class="w-50 mx-auto">
-				<h2 class="mb-4">Login</h2>
-				<div class="mb-3">
+			<form @submit.prevent="login" class="w-25 mx-auto">
+				<h2 class="m-5">Login</h2>
+				<div class="my-4">
 					<label for="email" class="form-label">E-mail</label>
 					<input
 						type="text"
@@ -13,7 +13,7 @@
 						required
 					/>
 				</div>
-				<div class="mb-3">
+				<div class="my-4">
 					<label for="password" class="form-label">Password</label>
 					<input
 						type="password"
@@ -23,8 +23,16 @@
 						required
 					/>
 				</div>
-				<button type="submit" class="btn btn-primary">Login</button>
+				<div class="d-flex justify-content-center align-items-center m-5">
+					<button type="submit" class="btn btn-primary">Login</button>
+				</div>
 			</form>
+			<div class="text-center m-5">
+				<p>
+					Not a member?
+					<router-link to="/registration"> Register now!</router-link>
+				</p>
+			</div>
 		</div>
 	</section>
 </template>
