@@ -18,7 +18,7 @@
 				<div class="navbar-nav ms-auto gap-3">
 					<router-link :to="{ name: 'restaurants' }"> Restaurants </router-link>
 					<router-link :to="{ name: 'dishes' }"> Dishes </router-link>
-					<router-link :to="{ name: 'user' }"> Login </router-link>
+					<router-link :to="{ name: 'login' }"> Login </router-link>
 				</div>
 			</div>
 		</div>
