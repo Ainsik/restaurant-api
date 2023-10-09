@@ -1,9 +1,9 @@
 <template>
 	<section>
 		<div class="container mt-5">
-			<form @submit.prevent="register" class="w-50 mx-auto">
-				<h2 class="mb-4">Registration</h2>
-				<div class="mb-3">
+			<form @submit.prevent="register" class="w-25 mx-auto">
+				<h2 class="m-5">Registration</h2>
+				<div class="my-4">
 					<label for="email" class="form-label">E-mail</label>
 					<input
 						type="email"
@@ -13,7 +13,7 @@
 						required
 					/>
 				</div>
-				<div class="mb-3">
+				<div class="my-4">
 					<label for="firstName" class="form-label">First Name:</label>
 					<input
 						type="text"
@@ -23,7 +23,7 @@
 						required
 					/>
 				</div>
-				<div class="mb-3">
+				<div class="my-4">
 					<label for="lastName" class="form-label">Last Name:</label>
 					<input
 						type="text"
@@ -33,7 +33,7 @@
 						required
 					/>
 				</div>
-				<div class="mb-3">
+				<div class="my-4">
 					<label for="dateOfBirth" class="form-label">Date of birth</label>
 					<input
 						type="date"
@@ -43,7 +43,7 @@
 						required
 					/>
 				</div>
-				<div class="mb-3">
+				<div class="my-4">
 					<label for="password" class="form-label">Password</label>
 					<input
 						type="password"
@@ -53,8 +53,13 @@
 						required
 					/>
 				</div>
-				<button type="submit" class="btn btn-primary">Sign up</button>
+				<div class="d-flex justify-content-center align-items-center m-5">
+					<button type="submit" class="btn btn-primary">Sign up</button>
+				</div>
 			</form>
+			<div class="text-center m-5">
+				<router-link to="/login">» Already registered «</router-link>
+			</div>
 		</div>
 	</section>
 </template>
@@ -90,10 +95,7 @@ export default {
 					this.$router.push("/login");
 				})
 				.catch((error) => {
-					console.error(
-						"Registration error",
-						error.response.data.errors
-					);
+					console.error("Registration error", error.response.data.errors);
 				});
 		},
 	},
