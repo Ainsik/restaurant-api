@@ -1,14 +1,10 @@
 import { createStore } from "vuex";
-import state from "./state";
-import * as actions from "./actions";
-import * as mutations from "./mutations";
-import * as getters from "./getters";
+import loginModule from "./login/auth.js";
 
 const store = createStore({
-	state,
-	actions,
-	mutations,
-	getters,
+	modules: {
+		login: loginModule,
+	},
 });
 
 export default store;
