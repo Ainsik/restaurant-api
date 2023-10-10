@@ -41,4 +41,40 @@ public class LoginValidatorTests
         //assert
         result.ShouldHaveAnyValidationError();
     }
+
+    [Fact]
+    public void Validate_WithInvalidCommand_ShouldHaveValidationErrorForEmail()
+    {
+        //arrange
+        var validator = new LoginValidator();
+        var command = new LoginDto
+        {
+            Email = "admingmail.com",
+            Password = "Admin01!"
+        };
+
+        //act
+        var result = validator.TestValidate(command);
+
+        //assert
+        result.ShouldHaveValidationErrorFor(c => c.Email);
+    }
+
+    [Fact]
+    public void Validate_WithInvalidCommand_ShouldHaveValidationErrorForPassword()
+    {
+        //arrange
+        var validator = new LoginValidator();
+        var command = new LoginDto
+        {
+            Email = "admin@gmail.com",
+            Password = "Admin01"
+        };
+
+        //act
+        var result = validator.TestValidate(command);
+
+        //assert
+        result.ShouldHaveValidationErrorFor(c => c.Password);
+    }
 }
