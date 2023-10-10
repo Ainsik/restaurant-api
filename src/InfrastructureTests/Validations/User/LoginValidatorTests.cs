@@ -58,6 +58,7 @@ public class LoginValidatorTests
 
         //assert
         result.ShouldHaveValidationErrorFor(c => c.Email);
+        result.ShouldNotHaveValidationErrorFor(c => c.Password);
     }
 
     [Fact]
@@ -76,5 +77,7 @@ public class LoginValidatorTests
 
         //assert
         result.ShouldHaveValidationErrorFor(c => c.Password);
+        result.ShouldNotHaveValidationErrorFor(c => c.Email);
+
     }
 }
