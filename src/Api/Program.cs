@@ -158,18 +158,23 @@ app.MapControllers();
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetService<RestaurantDbContext>();
-var pendingMigrations = dbContext.Database.GetPendingMigrations();
-
-var policy = Policy
-    .Handle<Exception>()
-    .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
-
-var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
-seeder.Seed();
-
-policy.Execute(() =>
+if (dbContext.Database.IsRelational())
 {
-    if (pendingMigrations.Any()) dbContext.Database.Migrate();
-});
+    var pendingMigrations = dbContext.Database.GetPendingMigrations();
+
+    var policy = Policy
+        .Handle<Exception>()
+        .WaitAndRetry(3, attempt => TimeSpan.FromSeconds(attempt * 3));
+
+    var seeder = scope.ServiceProvider.GetRequiredService<Seeder>();
+    seeder.Seed();
+
+    policy.Execute(() =>
+    {
+        if (pendingMigrations.Any()) dbContext.Database.Migrate();
+    });
+}
 
 app.Run();
+
+public partial class Program {}
