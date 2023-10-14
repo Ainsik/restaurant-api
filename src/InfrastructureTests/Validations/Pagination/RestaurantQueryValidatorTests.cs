@@ -4,8 +4,7 @@ using FluentValidation.TestHelper;
 using Infrastructure.Validations.Pagination;
 using Xunit;
 
-namespace ApiTests.Helpers;
-
+namespace InfrastructureTests.Validations.Pagination;
 public class RestaurantQueryValidatorTests
 {
     public static IEnumerable<object[]> GetSampleValidData()

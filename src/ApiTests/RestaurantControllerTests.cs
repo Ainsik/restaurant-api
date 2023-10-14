@@ -1,4 +1,5 @@
 using ApiTests.Helpers;
+using Application.Models.Dto.Restaurant;
 using Core.Entities;
 using FluentAssertions;
 using Infrastructure.DbContext;
@@ -65,20 +66,16 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
         };
 
         SeedRestaurant(restaurant);
-
         // act
         var response = await _client.DeleteAsync("/api/restaurant/" + restaurant.Id);
 
-
         // assert
-
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
     }
     [Fact]
     public async Task Delete_ForRestaurantOwner_ReturnsNoContent()
     {
         // arrange
-
         var restaurant = new Restaurant
         {
             CreatedById = 1, 
@@ -90,13 +87,10 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
         };
 
         SeedRestaurant(restaurant);
-
         // act
         var response = await _client.DeleteAsync("/api/restaurant/" + restaurant.Id);
 
-
         // assert
-
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
     }
 
@@ -104,13 +98,10 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
     public async Task Delete_ForNonExistingRestaurant_ReturnsNotFound()
     {
         // act
-
         var response = await _client.DeleteAsync("/api/restaurant/987");
 
         // assert
-
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
-
     }
 
     [Theory]
@@ -122,8 +113,8 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
         // act
 
         var response = await _client.GetAsync("/api/restaurant?" + queryParams);
-        // assert
 
+        // assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
     }
 
@@ -135,10 +126,56 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
     public async Task GetAll_WithInvalidQueryParams_ReturnsBadRequest(string queryParams)
     {
         // act
-
         var response = await _client.GetAsync("/api/restaurant?" + queryParams);
 
         //assert
+        response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
+    }
+
+    [Fact]
+    public async Task CreateRestaurant_WithValidModel_ReturnsOkStatus()
+    {
+        // arrange
+        var model = new NewRestaurantDto
+        {
+            Name = "TestRestaurant",
+            Description = "test",
+            Category = "test",
+            HasDelivery = true,
+            ContactEmail = "testemail@o2.pl",
+            ContactNumber = "123123123",
+            City = "Test",
+            Street = "Test",
+            PostalCode = "12-123"
+        };
+
+        var httpContent = model.ToJsonHttpContent();
+
+        // act
+        var response = await _client.PostAsync("/api/restaurant", httpContent);
+
+        // arrange 
+        response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+    }
+
+
+    [Fact]
+    public async Task CreateRestaurant_WithInvalidModel_ReturnsBadRequest()
+    {
+        // arrange
+        var model = new NewRestaurantDto()
+        {
+            ContactEmail = "test@test.com",
+            Description = "test desc",
+            ContactNumber = "999 888 777"
+        };
+
+        var httpContent = model.ToJsonHttpContent();
+
+        // act
+        var response = await _client.PostAsync("/api/restaurant", httpContent);
+
+        // arrange
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
     }
 }
