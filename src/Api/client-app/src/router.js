@@ -6,7 +6,8 @@ import SingleRestaurant from "./pages/SingleRestaurant.vue";
 import AllDishes from "./pages/AllDishes.vue";
 import SingleDish from "./pages/SingleDish.vue";
 import LoginPage from "./pages/LoginPage.vue";
-import RegistrationPage from "./pages/RegistrationPage.vue";
+import RegisterPage from "./pages/RegisterPage.vue";
+import NotFound from "./pages/NotFound.vue";
 
 const routes = [
 	{
@@ -24,19 +25,21 @@ const routes = [
 				component: AllRestaurants,
 			},
 			{
-				path: "/restaurant/:restaurantId?",
+				path: "/restaurant/:restaurantId",
 				name: "restaurant",
 				component: SingleRestaurant,
-			},
-			{
-				path: "/restaurant/:restaurantId?/dishes",
-				name: "dishes",
-				component: AllDishes,
-			},
-			{
-				path: "/restaurant/:restaurantId?/dish/:dishId?",
-				name: "dish",
-				component: SingleDish,
+				children: [
+					{
+						path: "dishes",
+						name: "dishes",
+						component: AllDishes,
+					},
+					{
+						path: "dish/:dishId?",
+						name: "dish",
+						component: SingleDish,
+					},
+				],
 			},
 			{
 				path: "/login",
@@ -46,10 +49,11 @@ const routes = [
 			{
 				path: "/registration",
 				name: "registration",
-				component: RegistrationPage,
+				component: RegisterPage,
 			},
 		],
 	},
+	{ path: "/:notFound(.*)", component: NotFound },
 ];
 
 const router = createRouter({

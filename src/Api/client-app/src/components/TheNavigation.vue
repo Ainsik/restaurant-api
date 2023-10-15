@@ -17,7 +17,6 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav ms-auto gap-3">
 					<router-link :to="{ name: 'restaurants' }"> Restaurants </router-link>
-					<router-link :to="{ name: 'dishes' }"> Dishes </router-link>
 					<router-link v-if="!token" to="/login">Login</router-link>
 					<button class="logout" v-if="token" @click="logout">
 						<i class="bi bi-box-arrow-right"></i> Logout
