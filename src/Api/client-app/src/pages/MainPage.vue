@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="container mt-5">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h1 class="my-5">Welcome to Restaurant API</h1>

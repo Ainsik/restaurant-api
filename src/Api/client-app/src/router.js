@@ -25,7 +25,7 @@ const routes = [
 				component: AllRestaurants,
 			},
 			{
-				path: "/restaurant/:restaurantId",
+				path: "/restaurants/:restaurantId",
 				name: "restaurant",
 				component: SingleRestaurant,
 				children: [
@@ -35,7 +35,7 @@ const routes = [
 						component: AllDishes,
 					},
 					{
-						path: "dish/:dishId?",
+						path: "dishes/:dishId",
 						name: "dish",
 						component: SingleDish,
 					},
