@@ -8,6 +8,7 @@
 				ID: {{ restaurant.id }} <br />
 				Name: {{ restaurant.name }}
 			</p>
+			<router-link :to="restaurantDetails">Go to Restaurant</router-link>
 		</div>
 	</section>
 </template>
@@ -39,8 +40,11 @@ export default {
 				.catch((error) => {
 					console.error("Błąd żądania GET", error.response);
 				});
-
-			this.restaurantId = null;
+		},
+	},
+	computed: {
+		restaurantDetails() {
+			return this.$route.path + "/" + this.restaurantId;
 		},
 	},
 };
