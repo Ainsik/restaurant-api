@@ -57,6 +57,7 @@ export default {
 				.then((response) => {
 					const token = response.data;
 					this.$store.dispatch("setToken", token);
+					this.$router.push("/restaurants");
 				})
 				.catch((error) => {
 					console.error("Login error", error);
