@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="container mt-5">
+		<div class="container">
 			<form @submit.prevent="register" class="w-25 mx-auto">
 				<h2 class="m-5">Registration</h2>
 				<div class="my-4">

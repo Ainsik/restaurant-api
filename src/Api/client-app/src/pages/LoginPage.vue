@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div class="container mt-5">
+		<div class="container">
 			<form @submit.prevent="login" class="w-25 mx-auto">
 				<h2 class="m-5">Login</h2>
 				<div class="my-4">

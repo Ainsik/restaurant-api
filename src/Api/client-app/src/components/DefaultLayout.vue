@@ -1,6 +1,6 @@
 <template>
 	<the-navigation />
-	<main>
+	<main class="m-5">
 		<router-view />
 	</main>
 </template>
