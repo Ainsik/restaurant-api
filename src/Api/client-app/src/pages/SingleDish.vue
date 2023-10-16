@@ -1,7 +1,9 @@
 <template>
 	<section>
 		<div class="container">
-			<p>Dish</p>
+			<div class="m-5 text-center">
+				<h2>Dish Details</h2>
+			</div>
 		</div>
 	</section>
 </template>
