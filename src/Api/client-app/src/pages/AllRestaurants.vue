@@ -1,27 +1,68 @@
 <template>
 	<section>
 		<div class="container">
-			<h2>CURRENT ID: {{ restaurantId }}</h2>
-			<input type="text" v-model="restaurantId" />
-			<button @click="getRestaurant">getRestaurant</button>
-			<p>
-				ID: {{ restaurant.id }} <br />
-				Name: {{ restaurant.name }}
-			</p>
-			<router-link :to="restaurantDetails">Go to Restaurant</router-link>
+			<form @submit.prevent="loadRestaurants">
+				<label for="searchPhrase">Search Phrase:</label>
+				<input type="text" id="searchPhrase" v-model="query.searchPhrase" />
+
+				<label for="pageSize">Page Size:</label>
+				<input type="number" id="pageSize" v-model="query.pageSize" />
+
+				<label for="pageNumber">Page Number:</label>
+				<input type="number" id="pageNumber" v-model="query.pageNumber" />
+
+				<button type="submit">Search</button>
+			</form>
+
+			<div v-if="hasRestaurants">
+				<restaurant-item
+					v-for="restaurant in restaurants"
+					:key="restaurant.id"
+					:id="restaurant.id"
+					:name="restaurant.name"
+					:description="restaurant.description"
+					:category="restaurant.category"
+					:dishes="restaurant.dishes"
+					:has-delivery="restaurant.hasDelivery"
+					:contact-email="restaurant.contactEmail"
+					:contact-number="restaurant.contactNumber"
+				/>
+			</div>
+			<h3 v-else>No restaurants found.</h3>
+
+			<div>
+				<h2>CURRENT ID: {{ restaurantId }}</h2>
+				<input type="text" v-model="restaurantId" />
+				<button @click="getRestaurant">getRestaurant</button>
+				<p>
+					ID: {{ restaurant.id }} <br />
+					Name: {{ restaurant.name }}
+				</p>
+			</div>
 		</div>
 	</section>
 </template>
 
 <script>
 import axios from "axios";
+import RestaurantItem from "../components/restaurant/RestaurantItem.vue";
+
 const API = "https://localhost:7236/api/restaurant";
+
 export default {
 	data() {
 		return {
 			restaurant: {},
 			restaurantId: null,
+			query: {
+				searchPhrase: "",
+				pageSize: 5,
+				pageNumber: 1,
+			},
 		};
+	},
+	components: {
+		RestaurantItem,
 	},
 	methods: {
 		async getRestaurant() {
@@ -41,10 +82,16 @@ export default {
 					console.error("Błąd żądania GET", error.response);
 				});
 		},
+		async loadRestaurants() {
+			this.$store.dispatch("restaurant/loadRestaurants", this.query);
+		},
 	},
 	computed: {
-		restaurantDetails() {
-			return this.$route.path + "/" + this.restaurantId;
+		restaurants() {
+			return this.$store.getters["restaurant/restaurants"];
+		},
+		hasRestaurants() {
+			return this.$store.getters["restaurant/hasRestaurants"];
 		},
 	},
 };
