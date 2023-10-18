@@ -11,6 +11,19 @@
 				<label for="pageNumber">Page Number:</label>
 				<input type="number" id="pageNumber" v-model="query.pageNumber" />
 
+				<label for="sortBy">Sort By:</label>
+				<select id="sortBy" v-model="query.sortBy">
+					<option value="Name">Name</option>
+					<option value="Description">Description</option>
+					<option value="Category">Category</option>
+				</select>
+
+				<label for="sortDirection">Sort Direction:</label>
+				<select id="sortDirection" v-model="query.sortDirection">
+					<option value="0">Ascending</option>
+					<option value="1">Descending</option>
+				</select>
+
 				<button type="submit">Search</button>
 			</form>
 
@@ -58,6 +71,8 @@ export default {
 				searchPhrase: "",
 				pageSize: 5,
 				pageNumber: 1,
+				sortBy: "",
+				sortDirection: 0,
 			},
 		};
 	},
