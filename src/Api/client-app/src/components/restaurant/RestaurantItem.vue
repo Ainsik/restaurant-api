@@ -1,34 +1,16 @@
 <template>
-	<h3>{{ name }}</h3>
-	<p class="text-center">{{ description }}</p>
-	<p>Category: {{ category }}</p>
-	<p>Has Delivery: {{ hasDelivery }}</p>
-	<p>Contact Email: {{ contactEmail }}</p>
-	<p>Contact Number: {{ contactNumber }}</p>
-	<div v-if="dishes">
-		<h4>Dishes:</h4>
-		<ul>
-			<li v-for="dish in dishes" :key="dish.id">{{ dish.name }}</li>
-		</ul>
-	</div>
+	<h3>{{ restaurantData.name }}</h3>
+	<p class="text-center">{{ restaurantData.description }}</p>
+	<p>Category: {{ restaurantData.category }}</p>
 	<router-link :to="restaurantDetails">Go to Restaurant</router-link>
 </template>
 
 <script>
 export default {
-	props: [
-		"id",
-		"name",
-		"description",
-		"category",
-		"hasDelivery",
-		"contactEmail",
-		"contactNumber",
-		"dishes",
-	],
+	props: ["restaurantData"],
 	computed: {
 		restaurantDetails() {
-			return this.$route.path + "/" + this.id;
+			return this.$route.path + "/" + this.restaurantData.id;
 		},
 	},
 };

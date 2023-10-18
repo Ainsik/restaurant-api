@@ -62,14 +62,7 @@
 				<restaurant-item
 					v-for="restaurant in restaurants"
 					:key="restaurant.id"
-					:id="restaurant.id"
-					:name="restaurant.name"
-					:description="restaurant.description"
-					:category="restaurant.category"
-					:dishes="restaurant.dishes"
-					:has-delivery="restaurant.hasDelivery"
-					:contact-email="restaurant.contactEmail"
-					:contact-number="restaurant.contactNumber"
+					:restaurantData="restaurant"
 				/>
 			</div>
 			<h3 v-else>No restaurants found.</h3>
