@@ -53,7 +53,9 @@
 						</select>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary">Search</button>
+				<div class="d-flex justify-content-center align-items-center m-3">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
 			</form>
 
 			<div v-if="hasRestaurants">
