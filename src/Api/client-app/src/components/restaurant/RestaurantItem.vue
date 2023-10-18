@@ -1,6 +1,6 @@
 <template>
-	<h3>Name: {{ name }}</h3>
-	<p>Description: {{ description }}</p>
+	<h3>{{ name }}</h3>
+	<p class="text-center">{{ description }}</p>
 	<p>Category: {{ category }}</p>
 	<p>Has Delivery: {{ hasDelivery }}</p>
 	<p>Contact Email: {{ contactEmail }}</p>
