@@ -28,6 +28,7 @@ const routes = [
 				path: "/restaurants/:restaurantId",
 				name: "restaurant",
 				component: SingleRestaurant,
+				props: true,
 				children: [
 					{
 						path: "dishes",

@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-light">
 			<div class="container">
 				<router-link :to="{ name: 'home' }"> Home </router-link>
 				<button

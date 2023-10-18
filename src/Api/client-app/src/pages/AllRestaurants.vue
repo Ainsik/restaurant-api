@@ -1,31 +1,68 @@
 <template>
 	<section>
 		<div class="container">
-			<form @submit.prevent="loadRestaurants">
-				<label for="searchPhrase">Search Phrase:</label>
-				<input type="text" id="searchPhrase" v-model="query.searchPhrase" />
-
-				<label for="pageSize">Page Size:</label>
-				<input type="number" id="pageSize" v-model="query.pageSize" />
-
-				<label for="pageNumber">Page Number:</label>
-				<input type="number" id="pageNumber" v-model="query.pageNumber" />
-
-				<button type="submit">Search</button>
+			<form @submit.prevent="loadRestaurants" class="container mt-4">
+				<div class="row">
+					<div class="col-sm-4 mb-3">
+						<label for="searchPhrase" class="form-label">Search Phrase:</label>
+						<input
+							type="text"
+							id="searchPhrase"
+							class="form-control"
+							v-model="query.searchPhrase"
+						/>
+					</div>
+					<div class="col-sm-4 mb-3">
+						<label for="pageSize" class="form-label">Page Size:</label>
+						<select id="pageSize" class="form-select" v-model="query.pageSize">
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+						</select>
+					</div>
+					<div class="col-sm-4 mb-3">
+						<label for="pageNumber" class="form-label">Page Number:</label>
+						<input
+							type="number"
+							id="pageNumber"
+							class="form-control"
+							v-model="query.pageNumber"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 mb-3">
+						<label for="sortBy" class="form-label">Sort By:</label>
+						<select id="sortBy" class="form-select" v-model="query.sortBy">
+							<option value="Name">Name</option>
+							<option value="Description">Description</option>
+							<option value="Category">Category</option>
+						</select>
+					</div>
+					<div class="col-sm-4 mb-3">
+						<label for="sortDirection" class="form-label"
+							>Sort Direction:</label
+						>
+						<select
+							id="sortDirection"
+							class="form-select"
+							v-model="query.sortDirection"
+						>
+							<option value="0">Ascending</option>
+							<option value="1">Descending</option>
+						</select>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center align-items-center m-3">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
 			</form>
 
 			<div v-if="hasRestaurants">
 				<restaurant-item
 					v-for="restaurant in restaurants"
 					:key="restaurant.id"
-					:id="restaurant.id"
-					:name="restaurant.name"
-					:description="restaurant.description"
-					:category="restaurant.category"
-					:dishes="restaurant.dishes"
-					:has-delivery="restaurant.hasDelivery"
-					:contact-email="restaurant.contactEmail"
-					:contact-number="restaurant.contactNumber"
+					:restaurantData="restaurant"
 				/>
 			</div>
 			<h3 v-else>No restaurants found.</h3>
@@ -58,6 +95,8 @@ export default {
 				searchPhrase: "",
 				pageSize: 5,
 				pageNumber: 1,
+				sortBy: "",
+				sortDirection: 0,
 			},
 		};
 	},
