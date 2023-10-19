@@ -101,5 +101,8 @@ export default {
 			return this.$store.getters["restaurant/hasRestaurants"];
 		},
 	},
+	created() {
+		this.$store.dispatch("restaurant/loadRestaurants", this.query);
+	},
 };
 </script>
