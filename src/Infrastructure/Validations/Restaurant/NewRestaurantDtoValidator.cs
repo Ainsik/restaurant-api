@@ -21,9 +21,6 @@ public class NewRestaurantDtoValidator : AbstractValidator<NewRestaurantDto>
             .NotEmpty().WithMessage("Category is required.")
             .MaximumLength(50).WithMessage("Category can't be longer than 50 characters.");
 
-        RuleFor(r => r.HasDelivery)
-            .NotEmpty().WithMessage("Has delivery is required.");
-
         RuleFor(r => r.ContactEmail)
             .NotEmpty().WithMessage("Restaurant e-mail is required.")
             .MaximumLength(50).WithMessage("Restaurant e-mail can't be longer than 50 characters.")

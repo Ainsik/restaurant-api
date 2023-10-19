@@ -1,63 +1,78 @@
 <template>
 	<section>
-		<base-card>
+		<base-card v-if="restaurant">
 			<div class="container">
-				<div class="m-5 text-center">
-					<div class="m-5">
-						<h1>{{ restaurantDetails.name }}</h1>
-						<p>{{ restaurantDetails.description }}</p>
-						<p>{{ restaurantDetails.category }}</p>
-						<p>Has Delivery: {{ restaurantDetails.hasDelivery }}</p>
+				<div class="previous-page">
+					<i class="bi bi-arrow-return-left" @click="goBack"></i>
+				</div>
+				<div class="m-3 text-center">
+					<div class="my-3">
+						<h1 class="fw-bold">{{ restaurant.name }}</h1>
+						<p class="fst-italic">{{ restaurant.category }}</p>
+						<p>{{ restaurant.description }}</p>
+						<div class="fst-italic">
+							<span v-if="restaurant.hasDelivery" class="text-success"
+								>{{ restaurant.name }} has delivery options.</span
+							><span v-else class="text-danger"
+								>{{ restaurant.name }} doesn't have a delivery option.</span
+							>
+						</div>
 					</div>
-					<div class="m-5">
-						<h2>Address</h2>
-						<p>City: {{ restaurantDetails.city }}</p>
-						<p>Street: {{ restaurantDetails.street }}</p>
-						<p>Postal Code: {{ restaurantDetails.postalCode }}</p>
+					<div class="">
+						<h3>Address:</h3>
+						<p>
+							<span>{{ restaurant.street }}, </span>
+							<span>{{ restaurant.city }}&nbsp;</span>
+							<span>{{ restaurant.postalCode }}</span>
+						</p>
 					</div>
 				</div>
 				<h2 v-if="hasDishes">
 					<router-link :to="restaurantDishes">MENU</router-link>
 				</h2>
-				<div class="d-flex justify-content-center align-items-center m-3">
-					<button @click="goBack" class="btn btn-primary">Previous page</button>
-				</div>
 				<router-view />
 			</div>
 		</base-card>
+		<div v-else class="text-center text-danger">
+			<h5 class="display-2">
+				You must
+				<span>
+					<router-link to="/login">log in</router-link>
+				</span>
+				to see the restaurant details.
+			</h5>
+		</div>
 	</section>
 </template>
 
 <script>
 export default {
 	props: ["restaurantId"],
-	data() {
-		return {
-			restaurant: null,
-		};
-	},
 	methods: {
 		goBack() {
 			this.$router.back();
 		},
 	},
 	computed: {
-		restaurantDetails() {
-			return this.restaurant;
-		},
 		hasDishes() {
 			return this.restaurant.dishes.length > 0;
 		},
 		restaurantDishes() {
 			return this.$route.path + "/" + "dishes";
 		},
+		restaurant() {
+			return this.$store.getters["restaurant/restaurant"];
+		},
 	},
 	created() {
-		this.restaurant = this.$store.getters["restaurant/restaurants"].find(
-			(restaurant) => restaurant.id == this.restaurantId
-		);
+		this.$store.dispatch("restaurant/loadRestaurant", this.restaurantId);
 	},
 };
 </script>
 
-<style></style>
+<style>
+.previous-page {
+	font-size: 2.5rem;
+	cursor: pointer;
+}
+</style>

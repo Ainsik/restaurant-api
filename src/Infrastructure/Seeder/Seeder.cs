@@ -93,6 +93,32 @@ public class Seeder
                     Street = "Szewska 2",
                     PostalCode = "30-001"
                 },
+                Dishes = new List<Dish>
+                {
+                    new()
+                    {
+                        Name = "Burger",
+                        Description =
+                            "Burger is a fiery and flavorful Southern dish featuring crispy fried chicken drenched in a spicy cayenne pepper-infused glaze.",
+                        Price = 10.30M
+                    },
+
+                    new()
+                    {
+                        Name = "Chicken burger",
+                        Description =
+                            "Chicken burger are bite-sized, golden-fried pieces of tender chicken, perfect for dipping and snacking.",
+                        Price = 5.30M
+                    },
+
+                    new()
+                    {
+                        Name = "Chicken double burger",
+                        Description =
+                            "Chicken double burger are bite-sized, golden-fried pieces of tender chicken, perfect for dipping and snacking.",
+                        Price = 5.30M
+                    }
+                },
                 CreatedById = 2
             },
             new()
@@ -100,7 +126,7 @@ public class Seeder
                 Name = "Burger King Kraków",
                 Description = "Burger King is a place where everyone can find something they love.",
                 Category = "Fast Food",
-                HasDelivery = true,
+                HasDelivery = false,
                 ContactEmail = "contact@burgerking.com",
                 ContactNumber = "987654321",
                 Address = new Address
@@ -166,8 +192,8 @@ public class Seeder
                 Name = "Taco Bell",
                 Description =
                     "Taco Bell is a place where you can try Mexican delicacies.",
-                Category = "Fast Food",
-                HasDelivery = true,
+                Category = "Mexican food",
+                HasDelivery = false,
                 ContactEmail = "contact@tacobell.com",
                 ContactNumber = "777888999",
                 Address = new Address

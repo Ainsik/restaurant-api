@@ -11,19 +11,11 @@
 				</ul>
 			</div>
 		</div>
-		<div>
-			<button @click="goBack" class="btn btn-primary">Previous page</button>
-		</div>
 	</section>
 </template>
 
 <script>
 export default {
-	methods: {
-		goBack() {
-			this.$router.back();
-		},
-	},
 	computed: {
 		dishDetails() {
 			return this.$route.path + "/" + "1";
