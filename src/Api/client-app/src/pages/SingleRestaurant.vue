@@ -2,26 +2,33 @@
 	<section>
 		<base-card>
 			<div class="container">
-				<div class="m-5 text-center">
-					<div class="m-5">
-						<h1>{{ restaurantDetails.name }}</h1>
-						<p>{{ restaurantDetails.description }}</p>
-						<p>{{ restaurantDetails.category }}</p>
-						<p>Has Delivery: {{ restaurantDetails.hasDelivery }}</p>
+				<div class="previous-page">
+					<i class="bi bi-arrow-return-left" @click="goBack"></i>
+				</div>
+				<div class="m-3 text-center">
+					<div class="my-3">
+						<h1>{{ restaurant.name }}</h1>
+						<p class="fst-italic">{{ restaurant.category }}</p>
+						<p>{{ restaurant.description }}</p>
+						<div class="fst-italic">
+							<span v-if="restaurant.hasDelivery" class="text-success"
+								>{{ restaurant.name }} has delivery options.</span
+							><span v-else class="text-danger"
+								>{{ restaurant.name }} doesn't have a delivery
+								option.</span
+							>
+						</div>
 					</div>
-					<div class="m-5">
+					<div class="my-3">
 						<h2>Address</h2>
-						<p>City: {{ restaurantDetails.city }}</p>
-						<p>Street: {{ restaurantDetails.street }}</p>
-						<p>Postal Code: {{ restaurantDetails.postalCode }}</p>
+						<p>City: {{ restaurant.city }}</p>
+						<p>Street: {{ restaurant.street }}</p>
+						<p>Postal Code: {{ restaurant.postalCode }}</p>
 					</div>
 				</div>
 				<h2 v-if="hasDishes">
 					<router-link :to="restaurantDishes">MENU</router-link>
 				</h2>
-				<div class="d-flex justify-content-center align-items-center m-3">
-					<button @click="goBack" class="btn btn-primary">Previous page</button>
-				</div>
 				<router-view />
 			</div>
 		</base-card>
@@ -42,9 +49,6 @@ export default {
 		},
 	},
 	computed: {
-		restaurantDetails() {
-			return this.restaurant;
-		},
 		hasDishes() {
 			return this.restaurant.dishes.length > 0;
 		},
@@ -60,4 +64,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.previous-page {
+	font-size: 2.5rem;
+	cursor: pointer;
+}
+</style>
