@@ -6,8 +6,8 @@
 					restaurantData.name
 				}}</router-link>
 			</h3>
+			<p class="fst-italic">{{ restaurantData.category }}</p>
 			<p>{{ restaurantData.description }}</p>
-			<p>Category: {{ restaurantData.category }}</p>
 		</div>
 	</base-card>
 </template>
