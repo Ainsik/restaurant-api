@@ -11,4 +11,20 @@ export default {
 				console.error("An error occurred:", error.response);
 			});
 	},
+	async loadRestaurant(context, payload) {
+		const token = context.rootGetters.getToken;
+
+		await axios
+			.get(`https://localhost:7236/api/restaurant/${payload}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((result) => {
+				context.commit("setRestaurant", result.data);
+			})
+			.catch((error) => {
+				console.error("An error occurred:", error.response);
+			});
+	},
 };

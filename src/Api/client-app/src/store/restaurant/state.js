@@ -1,4 +1,4 @@
 export default {
-	restaurants: [
-	],
+	restaurants: [],
+	restaurant: null,
 };

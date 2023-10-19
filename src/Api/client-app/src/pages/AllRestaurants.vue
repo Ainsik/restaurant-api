@@ -67,7 +67,7 @@
 			</div>
 			<h3 v-else>No restaurants found.</h3>
 
-			<div>
+			<!-- <div>
 				<h2>CURRENT ID: {{ restaurantId }}</h2>
 				<input type="text" v-model="restaurantId" />
 				<button @click="getRestaurant">getRestaurant</button>
@@ -75,21 +75,23 @@
 					ID: {{ restaurant.id }} <br />
 					Name: {{ restaurant.name }}
 				</p>
+			</div> -->
+			<div>
+				<h2>CURRENT ID: {{ restaurantId }}</h2>
+				<input type="text" v-model="restaurantId" />
+				<button @click="loadRestaurant">getRestaurant</button>
+				<p>{{ restaurant }}</p>
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
-import axios from "axios";
 import RestaurantItem from "../components/restaurant/RestaurantItem.vue";
-
-const API = "https://localhost:7236/api/restaurant";
 
 export default {
 	data() {
 		return {
-			restaurant: {},
 			restaurantId: null,
 			query: {
 				searchPhrase: "",
@@ -104,25 +106,11 @@ export default {
 		RestaurantItem,
 	},
 	methods: {
-		async getRestaurant() {
-			const token = this.$store.getters.getToken;
-
-			await axios
-				.get(`${API}/${this.restaurantId}`, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				})
-				.then((result) => {
-					const { data } = result;
-					this.restaurant = data;
-				})
-				.catch((error) => {
-					console.error("Błąd żądania GET", error.response);
-				});
-		},
 		async loadRestaurants() {
 			this.$store.dispatch("restaurant/loadRestaurants", this.query);
+		},
+		async loadRestaurant() {
+			this.$store.dispatch("restaurant/loadRestaurant", this.restaurantId);
 		},
 	},
 	computed: {
@@ -131,6 +119,9 @@ export default {
 		},
 		hasRestaurants() {
 			return this.$store.getters["restaurant/hasRestaurants"];
+		},
+		restaurant() {
+			return this.$store.getters["restaurant/restaurant"];
 		},
 	},
 };

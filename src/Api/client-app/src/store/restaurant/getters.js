@@ -5,4 +5,7 @@ export default {
 	hasRestaurants(state) {
 		return state.restaurants && state.restaurants.length > 0;
 	},
+	restaurant(state) {
+		return state.restaurant;
+	},
 };
