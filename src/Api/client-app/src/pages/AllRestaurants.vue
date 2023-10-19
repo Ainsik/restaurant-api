@@ -66,22 +66,6 @@
 				/>
 			</div>
 			<h3 v-else>No restaurants found.</h3>
-
-			<!-- <div>
-				<h2>CURRENT ID: {{ restaurantId }}</h2>
-				<input type="text" v-model="restaurantId" />
-				<button @click="getRestaurant">getRestaurant</button>
-				<p>
-					ID: {{ restaurant.id }} <br />
-					Name: {{ restaurant.name }}
-				</p>
-			</div> -->
-			<div>
-				<h2>CURRENT ID: {{ restaurantId }}</h2>
-				<input type="text" v-model="restaurantId" />
-				<button @click="loadRestaurant">getRestaurant</button>
-				<p>{{ restaurant }}</p>
-			</div>
 		</div>
 	</section>
 </template>
@@ -92,7 +76,6 @@ import RestaurantItem from "../components/restaurant/RestaurantItem.vue";
 export default {
 	data() {
 		return {
-			restaurantId: null,
 			query: {
 				searchPhrase: "",
 				pageSize: 5,
@@ -109,9 +92,6 @@ export default {
 		async loadRestaurants() {
 			this.$store.dispatch("restaurant/loadRestaurants", this.query);
 		},
-		async loadRestaurant() {
-			this.$store.dispatch("restaurant/loadRestaurant", this.restaurantId);
-		},
 	},
 	computed: {
 		restaurants() {
@@ -119,9 +99,6 @@ export default {
 		},
 		hasRestaurants() {
 			return this.$store.getters["restaurant/hasRestaurants"];
-		},
-		restaurant() {
-			return this.$store.getters["restaurant/restaurant"];
 		},
 	},
 };

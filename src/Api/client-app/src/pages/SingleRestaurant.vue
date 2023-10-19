@@ -1,29 +1,30 @@
 <template>
 	<section>
-		<base-card>
+		<base-card v-if="restaurant">
 			<div class="container">
 				<div class="previous-page">
 					<i class="bi bi-arrow-return-left" @click="goBack"></i>
 				</div>
 				<div class="m-3 text-center">
 					<div class="my-3">
-						<h1>{{ restaurant.name }}</h1>
+						<h1 class="fw-bold">{{ restaurant.name }}</h1>
 						<p class="fst-italic">{{ restaurant.category }}</p>
 						<p>{{ restaurant.description }}</p>
 						<div class="fst-italic">
 							<span v-if="restaurant.hasDelivery" class="text-success"
 								>{{ restaurant.name }} has delivery options.</span
 							><span v-else class="text-danger"
-								>{{ restaurant.name }} doesn't have a delivery
-								option.</span
+								>{{ restaurant.name }} doesn't have a delivery option.</span
 							>
 						</div>
 					</div>
-					<div class="my-3">
-						<h2>Address</h2>
-						<p>City: {{ restaurant.city }}</p>
-						<p>Street: {{ restaurant.street }}</p>
-						<p>Postal Code: {{ restaurant.postalCode }}</p>
+					<div class="">
+						<h3>Address:</h3>
+						<p>
+							<span>{{ restaurant.street }}, </span>
+							<span>{{ restaurant.city }}&nbsp;</span>
+							<span>{{ restaurant.postalCode }}</span>
+						</p>
 					</div>
 				</div>
 				<h2 v-if="hasDishes">
@@ -32,17 +33,21 @@
 				<router-view />
 			</div>
 		</base-card>
+		<div v-else class="text-center text-danger">
+			<h5 class="display-2">
+				You must
+				<span>
+					<router-link to="/login">log in</router-link>
+				</span>
+				to see the restaurant details.
+			</h5>
+		</div>
 	</section>
 </template>
 
 <script>
 export default {
 	props: ["restaurantId"],
-	data() {
-		return {
-			restaurant: null,
-		};
-	},
 	methods: {
 		goBack() {
 			this.$router.back();
@@ -55,11 +60,12 @@ export default {
 		restaurantDishes() {
 			return this.$route.path + "/" + "dishes";
 		},
+		restaurant() {
+			return this.$store.getters["restaurant/restaurant"];
+		},
 	},
 	created() {
-		this.restaurant = this.$store.getters["restaurant/restaurants"].find(
-			(restaurant) => restaurant.id == this.restaurantId
-		);
+		this.$store.dispatch("restaurant/loadRestaurant", this.restaurantId);
 	},
 };
 </script>
