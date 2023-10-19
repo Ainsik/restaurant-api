@@ -19,9 +19,6 @@ public class RestaurantConfiguration : IEntityTypeConfiguration<Core.Entities.Re
             .IsRequired()
             .HasMaxLength(50);
 
-        builder.Property(r => r.HasDelivery)
-            .IsRequired();
-
         builder.Property(r => r.ContactEmail)
             .IsRequired()
             .HasMaxLength(50);

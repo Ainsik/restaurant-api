@@ -14,8 +14,5 @@ public class UpdateRestaurantDtoValidator : AbstractValidator<UpdateRestaurantDt
         RuleFor(r => r.Description)
             .NotEmpty().WithMessage("Restaurant description is required.")
             .MaximumLength(200).WithMessage("Restaurant description can't be longer than 200 characters.");
-
-        RuleFor(r => r.HasDelivery)
-            .NotEmpty().WithMessage("Has delivery is required.");
     }
 }
