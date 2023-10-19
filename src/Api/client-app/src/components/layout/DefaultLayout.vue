@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-import TheNavigation from "../components/TheNavigation.vue";
+import TheNavigation from "../layout/TheNavigation.vue";
 </script>

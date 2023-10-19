@@ -1,8 +1,15 @@
 <template>
-	<h3>{{ restaurantData.name }}</h3>
-	<p class="text-center">{{ restaurantData.description }}</p>
-	<p>Category: {{ restaurantData.category }}</p>
-	<router-link :to="restaurantDetails">Go to Restaurant</router-link>
+	<base-card>
+		<div class="text-center">
+			<h3>
+				<router-link :to="restaurantDetails">{{
+					restaurantData.name
+				}}</router-link>
+			</h3>
+			<p>{{ restaurantData.description }}</p>
+			<p>Category: {{ restaurantData.category }}</p>
+		</div>
+	</base-card>
 </template>
 
 <script>
