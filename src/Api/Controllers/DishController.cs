@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("/api/restaurant/{restaurantId}/dish")]
+[Route("/api/restaurants/{restaurantId}/dishes")]
 public class DishController : ControllerBase
 {
     private readonly IDishService _dishService;
