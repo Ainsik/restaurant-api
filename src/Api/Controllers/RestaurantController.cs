@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("/api/restaurant")]
+[Route("/api/restaurants")]
 [Authorize]
 public class RestaurantController : ControllerBase
 {

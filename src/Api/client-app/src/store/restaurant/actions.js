@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
 	async loadRestaurants(context, payload) {
 		await axios
-			.get(`https://localhost:7236/api/restaurant`, { params: payload })
+			.get(`https://localhost:7236/api/restaurants`, { params: payload })
 			.then((result) => {
 				context.commit("setRestaurants", result.data.items);
 			})
@@ -15,7 +15,7 @@ export default {
 		const token = context.rootGetters.getToken;
 
 		await axios
-			.get(`https://localhost:7236/api/restaurant/${payload}`, {
+			.get(`https://localhost:7236/api/restaurants/${payload}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},

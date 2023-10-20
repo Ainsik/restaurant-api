@@ -39,6 +39,7 @@ const routes = [
 						path: "dishes/:dishId",
 						name: "dish",
 						component: SingleDish,
+						props: true,
 					},
 				],
 			},

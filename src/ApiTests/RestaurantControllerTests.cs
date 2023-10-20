@@ -14,6 +14,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
 {
     private readonly WebApplicationFactory<Program> _factory;
     private readonly HttpClient _client;
+    private const string Url = "/api/restaurants/";
 
     public RestaurantControllerTests(WebApplicationFactory<Program> factory)
     {
@@ -67,7 +68,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
 
         SeedRestaurant(restaurant);
         // act
-        var response = await _client.DeleteAsync("/api/restaurant/" + restaurant.Id);
+        var response = await _client.DeleteAsync(Url + restaurant.Id);
 
         // assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.Forbidden);
@@ -88,7 +89,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
 
         SeedRestaurant(restaurant);
         // act
-        var response = await _client.DeleteAsync("/api/restaurant/" + restaurant.Id);
+        var response = await _client.DeleteAsync(Url + restaurant.Id);
 
         // assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
@@ -98,7 +99,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
     public async Task Delete_ForNonExistingRestaurant_ReturnsNotFound()
     {
         // act
-        var response = await _client.DeleteAsync("/api/restaurant/987");
+        var response = await _client.DeleteAsync($"{Url}/987");
 
         // assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
@@ -112,7 +113,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
     {
         // act
 
-        var response = await _client.GetAsync("/api/restaurant?" + queryParams);
+        var response = await _client.GetAsync($"{Url}?" + queryParams);
 
         // assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
@@ -126,7 +127,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
     public async Task GetAll_WithInvalidQueryParams_ReturnsBadRequest(string queryParams)
     {
         // act
-        var response = await _client.GetAsync("/api/restaurant?" + queryParams);
+        var response = await _client.GetAsync($"{Url}?" + queryParams);
 
         //assert
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
@@ -152,7 +153,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
         var httpContent = model.ToJsonHttpContent();
 
         // act
-        var response = await _client.PostAsync("/api/restaurant", httpContent);
+        var response = await _client.PostAsync(Url, httpContent);
 
         // arrange 
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
@@ -173,7 +174,7 @@ public class RestaurantControllerTests : IClassFixture<WebApplicationFactory<Pro
         var httpContent = model.ToJsonHttpContent();
 
         // act
-        var response = await _client.PostAsync("/api/restaurant", httpContent);
+        var response = await _client.PostAsync(Url, httpContent);
 
         // arrange
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);

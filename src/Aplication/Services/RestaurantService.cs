@@ -43,7 +43,7 @@ public class RestaurantService : IRestaurantService
                      r.Name.ToLower().Contains(query.SearchPhrase.ToLower()) ||
                      r.Description.ToLower().Contains(query.SearchPhrase.ToLower()),
                 Order(query),
-                "Address,Dishes");
+                "Address");
 
         var restaurantsDto = _mapper.Map<List<RestaurantDto>>(restaurants);
 
@@ -58,7 +58,7 @@ public class RestaurantService : IRestaurantService
         _logger.LogTrace($"GET restaurant id: {id} action invoked.");
 
         var restaurant = await _unitOfWork.RestaurantRepository
-            .GetAsync(d => d.Id == id, "Address,Dishes");
+            .GetAsync(d => d.Id == id, "Address");
 
         if (restaurant is null)
         {
