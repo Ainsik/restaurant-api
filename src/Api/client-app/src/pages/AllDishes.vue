@@ -1,25 +1,35 @@
 <template>
-	<section>
-		<div class="container">
-			<div class="m-5 text-center">
-				<h2>All Dishes</h2>
-			</div>
-			<div>
-				<ul class="d-flex flex-column align-items-center">
-					<li><router-link :to="dishDetails">Pizza</router-link></li>
-					<li><router-link :to="dishDetails">Burger</router-link></li>
-				</ul>
-			</div>
-		</div>
-	</section>
+	<div v-if="hasDishes">
+		<h3>MENU</h3>
+		<ul class="d-flex flex-column align-items-center">
+			<li v-for="dish in dishes" :key="dish.id">
+				<router-link :to="dishDetails(dish.id)">{{ dish.name }}</router-link>
+			</li>
+		</ul>
+	</div>
+	<div v-else class="text-center">
+		<p class="text-danger fw-bold">No dishes.</p>
+	</div>
 </template>
 
 <script>
 export default {
-	computed: {
-		dishDetails() {
-			return this.$route.path + "/" + "1";
+	methods: {
+		dishDetails(id) {
+			return this.$route.path + "/" + id;
 		},
+	},
+	computed: {
+		dishes() {
+			return this.$store.getters["dish/dishes"];
+		},
+		hasDishes() {
+			return this.$store.getters["dish/hasDishes"];
+		},
+	},
+	created() {
+		const route = this.$route.path;
+		this.$store.dispatch("dish/loadDishes", route);
 	},
 };
 </script>

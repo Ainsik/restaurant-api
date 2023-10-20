@@ -27,10 +27,14 @@
 						</p>
 					</div>
 				</div>
-				<h2 v-if="hasDishes">
-					<router-link :to="restaurantDishes">MENU</router-link>
-				</h2>
-				<router-view />
+				<div>
+					<h3 v-if="isActive">
+						<router-link :to="restaurantDishes" @click="toogleActive"
+							>SHOW MENU</router-link
+						>
+					</h3>
+					<router-view v-else />
+				</div>
 			</div>
 		</base-card>
 		<div v-else class="text-center text-danger">
@@ -47,16 +51,26 @@
 
 <script>
 export default {
+	data() {
+		return {
+			isActive: true,
+		};
+	},
 	props: ["restaurantId"],
 	methods: {
 		goBack() {
-			this.$router.back();
+			if (this.$route.path === `/restaurants/${this.restaurantId}`) {
+				this.$router.push("/restaurants");
+			} else {
+				this.$router.push(`/restaurants/${this.restaurantId}`);
+			}
+			this.isActive = true;
+		},
+		toogleActive() {
+			this.isActive = !this.isActive;
 		},
 	},
 	computed: {
-		hasDishes() {
-			return this.restaurant.dishes.length > 0;
-		},
 		restaurantDishes() {
 			return this.$route.path + "/" + "dishes";
 		},
